@@ -1,0 +1,74 @@
+python -m kedehub templates find
+
+python -m kedehub templates find -a "Dimitar <dimitar>"
+
+python -m kedehub templates find -a 'Mincho Milev <mincho.milev@elando.bg>'
+
+python -m kedehub templates find -a 'Jordan Radev <jordan.radev@elando.bg>'
+
+python -m kedehub templates find -a 'Velin Yordanov <velin.yordanov@elando.bg>'
+
+python -m kedehub templates find -p azbg_virtual_pos
+
+python -m kedehub templates find -p azbg_virtual_pos azbg_digital_health_id
+
+python -m kedehub templates find -p azbg_virtual_pos  -r w
+
+python -m kedehub templates find -p azbg_virtual_pos -a 'Jordan Radev <jordan.radev@elando.bg>'
+
+python -m kedehub templates find -a 'Velin Yordanov <velin.yordanov@elando.bg>' 'Jordan Radev <jordan.radev@elando.bg>'
+
+python -m kedehub templates update
+
+python3 -m kedehub templates update -p overbaard
+
+python -m kedehub templates find -p overbaard  -r w
+
+python -m kedehub templates update -a 'Velin Yordanov <velin.yordanov@elando.bg>'
+
+python3 -m kedehub templates update -a 'Gav Wood <i@gavwood.com>'
+
+python3 -m kedehub templates update -a "Stephan Tual <stephan.tual@gmail.com>"
+
+######
+
+INTERACTIVE MODE (update)
+When the "templates" command enters the interactive mode, it shows the outliers found,
+and then walks the user through its interactive command loop.
+
+----------------------------------------------------------------
+Templates finding for: Mincho Milev <mincho_pm@mail.bg>
+----------------------------------------------------------------
+
+The command loop shows the list of outliers found, and gives a prompt "Type "y" if this commit is a templete".
+
+For date: 2020-01-28 there are total of 19,568 chars added
+        Out of all daily commits pick commits that are templetes.
+                repository: allianz_portal.git allianz-mis-desktop.git
+                commit time: 2020-01-28T13:11:58.000000000
+                hexsha: 51508442cbae9075709c1800eea0abc85e6b6f91
+                added chars: 13,605
+                        Type "y" if this commit is a templete: y
+                repository: allianz_portal.git allianz-mis-desktop.git
+                commit time: 2020-01-28T15:37:08.000000000
+                hexsha: 64593bd87d65c5883e163c171a4939b05ab1b386
+                added chars: 5,963
+                        Type "y" if this commit is a templete: y
+
+There could be more that one repository for a commit.
+
+The user could type "y" for "yes", and just Enter for "no".
+At the end it shows he templates the user have selected,
+
+----------------------------------------------------------------
+Below are the templates you have selected:
++--------------------------------------------+------------------------------------------+-------------------+
+| Repository                                 |            hexsha of the template commit | Chars of template |
++--------------------------------------------+------------------------------------------+-------------------+
+| allianz_portal.git                         | 60d327a5eee3a297aaef79dde7846551b1d4c2d1 |             7,914 |
++--------------------------------------------+------------------------------------------+-------------------+
+
+
+and asks: "Are you ready to save the above templates?"
+The user could type "y" for "yes", and just Enter for "no".
+If "yes" then the selected outliers are added to the templates for the person being examined.

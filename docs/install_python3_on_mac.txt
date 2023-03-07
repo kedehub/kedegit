@@ -1,0 +1,23 @@
+brew install pyenv
+
+pyenv install 3.8.13
+-----
+
+python3 -m pip install --upgrade pip
+
+# Usage of sudo -H----> sudo -H: set HOME variable to target user's home dir.
+sudo -H pip3 install virtualenv
+
+cd kedegit/
+
+python3 -m virtualenv venv39
+
+source venv39/bin/activate
+
+pip install -r requirements.txt
+
+pip3 install python-Levenshtein
+
+pip3 install numpy --upgrade
+
+deactivate

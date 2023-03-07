@@ -1,0 +1,16 @@
+--- virtualpos_adapter/pom.xml
++++ virtualpos_adapter/pom.xml
+@@ -9,10 +9,10 @@
+ 		<relativePath/> <!-- lookup parent from repository -->
+ 	</parent>
+ 	<groupId>bg.allianz</groupId>
+-	<artifactId>marketing.consent</artifactId>
++	<artifactId>virtualpos.adapter</artifactId>
+ 	<version>0.0.1-SNAPSHOT</version>
+-	<name>marketing.consent</name>
+-	<description>Marketing consent app</description>
++	<name>virtualpos.adapter</name>
++	<description>Virtaul PoS adapter</description>
+
+ 	<properties>
+ 		<java.version>1.8</java.version>

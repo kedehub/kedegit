@@ -1,0 +1,10 @@
+{
+  "sourceFiles": [
+    "*.txt",
+    "*/**/*"
+  ],
+  "testFiles": [
+    "tests/**/*.txt"
+  ],
+  "testLineRegex": "^T"
+}
