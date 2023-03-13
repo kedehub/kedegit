@@ -28,3 +28,32 @@ Analysis is performed on local clones of Git repositories:
 Local client sends the results from the analysis to SaaS platform.
 
 More informatio can be found [here](https://docs.kedehub.io/get-started/how-does-kedehub-work.html)
+
+## How to provision a new company (example for EC2)
+
+ Confing dir is: /home/ec2-user/.config/KedeGit
+
+```commandline
+cp docs/kede-config.json /home/ec2-user/.config/KedeGit
+nano /home/ec2-user/.config/KedeGit/kede-config.json
+```
+
+```commandline
+cp docs/empty_config.yaml /home/ec2-user/.config/KedeGit/config.yaml
+nano /home/ec2-user/.config/KedeGit/config.yaml
+```
+Add values for name, user and token from your invitation email.
+
+```commandline
+cd ~/kedegit/
+pip install -r requirements.txt 
+pip install -e ~/git/lapjv/
+
+```
+
+```commandline
+source ~/kedegit/env/bin/activate
+python3 -m kedehub list-projects
+deactivate
+```
+
