@@ -1,0 +1,3 @@
+# When working on the test repository, clone it to a directory starting with
+# worktree here, so git will ignore it.
+worktree*

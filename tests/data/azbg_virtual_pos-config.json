@@ -1,0 +1,22 @@
+{
+  "sourceFiles": [
+    "**/**/*.java",
+    "**/**/*.xml",
+    "**/**/*.yml",
+    "**/**/*.properties",
+    "**/**/Dockerfile",
+    "**/**/DockerfileWithBuilder",
+    "**/**/DockerfileWithoutBuilder",
+    "**/**/Dockerfile",
+    "**/**/Keys.txt",
+    "**/**/*.js",
+    "**/**/*.ts",
+    "**/**/*.json",
+    "**/**/*.scss",
+    "**/**/*.html"
+  ],
+  "excludedSourceFiles": [
+    "**/image_build/**",
+    "**/**/test/**"
+  ]
+}

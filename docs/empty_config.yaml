@@ -1,0 +1,9 @@
+server:
+    protocol: https
+    host: api.kedehub.io
+    port: 443
+
+company:
+    name:
+    user:
+    token:
