@@ -17,7 +17,7 @@ Local Git client is an application responsible for the analysis of local Git rep
 
 Tip: We recommend you to install only one KEDEHub local client for all your repositories.
 
-n addition, Local client can connect to popular code-sharing platforms like GitHub, GitLab, and Bitbucket and clone Git repositories from there. Organizations can use this feature if they want to have all things related to KEDEHub isolated on a single computer. Such a computer can be maintained not by the developers and their line managers but by the operations or system administrators from another department.
+In addition, Local client can connect to popular code-sharing platforms like GitHub, GitLab, and Bitbucket and clone Git repositories from there. Organizations can use this feature if they want to have all things related to KEDEHub isolated on a single computer. Such a computer can be maintained not by the developers and their line managers but by the operations or system administrators from another department.
 
 Analysis is performed on local clones of Git repositories:
 
