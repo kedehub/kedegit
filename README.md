@@ -1,4 +1,4 @@
-# KEDEHub Git client
+# KEDEHub Git client (KEDEGit)
 
 ## KEDEHub
 
@@ -12,47 +12,44 @@ KEDE calculation is the heart of KEDEHub. It is based on the one and only scient
 
 After KEDE is calculated it is presented in visual formats. There are many reports ready for use to compare the capability of developers, projects, teams and even companies.
 
-### Local Git client
-Local Git client is an application responsible for the analysis of local Git repositories. The client application needs to be installed on a computer with network access to the folders where the target Git repositories are cloned. One organization can have many such client applications installed on different computers. Each such client application can analyze a different set of Git repositories. For instance, eacn department can have their own Git repositories and their own KEDEHub client application. However, all data collected by all client applications will be stored under the company name. Hence we recommend organizations to maintain only one KEDEHub client application.
+More informatio can be found [here](https://docs.kedehub.io/get-started/how-does-kedehub-work.html)
 
-Tip: We recommend you to install only one KEDEHub local client for all your repositories.
+### Local Git client (KEDEGit)
 
-In addition, Local client can connect to popular code-sharing platforms like GitHub, GitLab, and Bitbucket and clone Git repositories from there. Organizations can use this feature if they want to have all things related to KEDEHub isolated on a single computer. Such a computer can be maintained not by the developers and their line managers but by the operations or system administrators from another department.
+KEDEGit is a local Python application responsible for:
+- Analyzing local Git repositories
+- Sending commands to the KEDEHub SaaS
 
-Analysis is performed on local clones of Git repositories:
+The client application KEDEGit must be installed on a computer with network access to the folders where the target Git repositories are cloned. 
+One organization can have multiple client applications installed on different computers, each analyzing a different set of Git repositories. 
+For example, each department may have its own Git repositories and its own KEDEGit client application. 
+However, all data collected by all KEDEGit client applications will be stored under the company name. 
+Therefore, we recommend organizations maintain only one KEDEGit client application.
 
-- Your source code and commit messages stay secure on your premisses with no transfer to KEDEHub.
-- No capture of your intellectual property through analysis of the source code.
-- No analysis of the commit messages.
+Tip: We recommend installing only one KEDEGit local client for all your repositories.
+
+Furthermore, the KEDEGit client can connect to popular code-sharing platforms like GitHub, GitLab, and Bitbucket, and clone Git repositories from these platforms. 
+Organizations can use this feature if they want to centralize all KEDEHub-related activities on a single computer. 
+This computer can be maintained by operations or system administrators from another department, instead of developers and their line managers.
+
+Analysis is performed on local clones of Git repositories, ensuring:
+
+- Your source code and commit messages remain secure on your premises, with no transfer to KEDEHub
+- No capture of your intellectual property through source code analysis
+- No analysis of commit messages
 
 Local client sends the results from the analysis to SaaS platform.
 
-More informatio can be found [here](https://docs.kedehub.io/get-started/how-does-kedehub-work.html)
+More informatio can be found [here](https://docs.kedehub.io/kedehub/kedehub-kedegit.html)
 
-## How to provision a new company (example for EC2)
+## Using KEDEGit
 
- Confing dir is: /home/ec2-user/.config/KedeGit
+All you need to know is in [How to use KEDEGit](./docs/howto.md) document.
 
-```commandline
-cp docs/kede-config.json /home/ec2-user/.config/KedeGit
-nano /home/ec2-user/.config/KedeGit/kede-config.json
-```
+## Get involved
 
-```commandline
-cp docs/empty_config.yaml /home/ec2-user/.config/KedeGit/config.yaml
-nano /home/ec2-user/.config/KedeGit/config.yaml
-```
-Add values for name, user and token from your invitation email.
+Contributions are welcome! Go ahead and file Issues or open Pull Requests.
 
-```commandline
-cd ~/kedegit/
-pip install -r requirements.txt 
+## License
 
-```
-
-```commandline
-source ~/kedegit/env/bin/activate
-python3 -m kedehub list-projects
-deactivate
-```
-
+[Apache 2.0](https://github.com/solana-mobile/Minty-fresh/blob/main/LICENSE.md)
