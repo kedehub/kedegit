@@ -32,6 +32,22 @@ class ArgparseTest(unittest.TestCase):
         self.assertEqual(None, args.earliest_commit_date)
         self.assertEqual('init-project', args.subparser_name)
 
+    def test_init_project_parsed_no_config(self):
+        args = self._parse('init-project azbg_virtual_pos ~/git/azbg_virtual_pos')
+        self.assertEqual('azbg_virtual_pos', args.project)
+        self.assertEqual('~/git/azbg_virtual_pos', args.repository)
+        self.assertIsNone(args.configuration)
+        self.assertEqual(None, args.earliest_commit_date)
+        self.assertEqual('init-project', args.subparser_name)
+
+    def test_init_project_parsed_no_config_earlest_date(self):
+        args = self._parse('init-project azbg_virtual_pos ~/git/azbg_virtual_pos --earliest-commit-date "2020-01-01" ')
+        self.assertEqual('azbg_virtual_pos', args.project)
+        self.assertEqual('~/git/azbg_virtual_pos', args.repository)
+        self.assertIsNone(args.configuration)
+        self.assertEqual('2020-01-01', args.earliest_commit_date)
+        self.assertEqual('init-project', args.subparser_name)
+
     def test_list_sources_parsed(self):
         args = self._parse('list-sources ~/git/azbg_virtual_pos --configuration ./kede-config.json')
         self.assertEqual('~/git/azbg_virtual_pos', args.repository)
@@ -77,6 +93,14 @@ class ArgparseTest(unittest.TestCase):
         self.assertEqual('azbg_virtual_pos', args.project)
         self.assertEqual('~/projects/baffle-common', args.repository)
         self.assertEqual('./kede-config.json', args.configuration)
+        self.assertEqual(None, args.earliest_commit_date)
+        self.assertEqual('add-repository', args.subparser_name)
+
+    def test_add_repository_parsed_no_config(self):
+        args = self._parse('add-repository azbg_virtual_pos ~/projects/baffle-common')
+        self.assertEqual('azbg_virtual_pos', args.project)
+        self.assertEqual('~/projects/baffle-common', args.repository)
+        self.assertIsNone(args.configuration)
         self.assertEqual(None, args.earliest_commit_date)
         self.assertEqual('add-repository', args.subparser_name)
 
