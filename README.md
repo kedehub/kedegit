@@ -52,4 +52,4 @@ Contributions are welcome! Go ahead and file Issues or open Pull Requests.
 
 ## License
 
-[Apache 2.0](https://github.com/solana-mobile/Minty-fresh/blob/main/LICENSE.md)
+[Apache 2.0](https://github.com/kedehub/kedegit/blob/master/LICENSE)
