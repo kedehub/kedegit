@@ -21,11 +21,17 @@ For EC2 the configuration directory is:
 ```
 You need to create it before proceeding further.
 
+````commandline
+mkdir ~/.config/KedeGit
+````
+
 ### Configure KEDEGit
 
 #### Allowed and excluded file types
 ```commandline
 cp docs/kede-config.json /home/ec2-user/.config/KedeGit
+
+nano /home/ec2-user/.config/KedeGit/kede-config.json
 ```
 Change the file if needed to match your architecture, technology and preferences.
 
@@ -35,6 +41,9 @@ Change the file if needed to match your architecture, technology and preferences
 cp docs/empty_config.yaml /home/ec2-user/.config/KedeGit/config.yaml
 ```
 Open <em>config.yaml</em> and add values for company name, user and token from your invitation email.
+```commandline
+nano /home/ec2-user/.config/KedeGit/config.yaml
+```
 ```commandline
 server:
     protocol: https
