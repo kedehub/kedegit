@@ -1,0 +1,93 @@
+Create a Python 3 virtual environment on Amazon Linux 2:
+
+1. Create and Launch an EC2 Instance:
+
+1.1 Log in to your AWS Management Console.
+
+1.2 Navigate to the EC2 Dashboard and click on "Launch Instance".
+
+1.3 Choose "Amazon Linux 2 AMI (HVM)" which should be available under the "Quick Start" tab.
+
+1.4 Choose an instance type (for example, t2.micro is usually free-tier eligible) and click "Next: Configure Instance Details".
+
+1.5 Leave the default settings on the "Configure Instance Details" page and proceed to "Next: Add Storage".
+
+1.6 Add required storage volume and go to "Next: Add Tags".
+
+1.7 Optionally, add tags for your instance for easier management and proceed to "Next: Configure Security Group".
+
+1.8 In "Configure Security Group", create a new security group. Add a rule to allow SSH (port 22) from your IP address. If your application requires it, also add rules for HTTP (port 80) and HTTPS (port 443).
+
+1.9 Review your instance configuration and click "Launch".
+
+1.10 A popup will appear asking for a key pair. If you don't have one, create a new key pair, download it, and keep it secure. You'll need this to SSH into your instance.
+
+2. Access the EC2 Instance:
+
+2.1. After the instance is running, you can SSH into it. If you are using Linux/Mac, use the following command:
+
+chmod 400 "/Users/dimitarbakardzhiev/My Drive/KEDEHub/aws/kedegit_client.pem"
+
+ssh -i "/Users/dimitarbakardzhiev/My Drive/KEDEHub/aws/kedegit_client.pem" ec2-user@ec2-52-28-88-240.eu-central-1.compute.amazonaws.com
+
+3. Update the Instance and Install Python 3:
+
+3.1 Once logged in, first update the instance:
+
+sudo yum update -y
+
+3.2 Install Python 3 and its development tools:
+
+sudo yum install python3-devel -y
+
+sudo yum install python3-pip
+
+3.3. Install gcc
+
+sudo yum groupinstall "Development Tools"
+
+Create a Virtual Environment:
+
+4.1 Install virtualenv with pip:
+
+pip3 install --user virtualenv
+
+4.2 Create a new directory for your project:
+
+mkdir kedegit
+cd kedegit
+
+4.3 In your project directory, create a new virtual environment:
+
+python3 -m venv env39
+
+5. Activate the Virtual Environment:
+
+source ~/env39/bin/activate
+
+6. Clone KEDEGit Code from GitHub:
+
+6.1 Install git:
+
+sudo yum install git -y
+
+git version
+
+6.2 Clone your repository:
+
+git clone https://github.com/kedehub/kedegit.git
+
+7. Install Required Packages:
+
+python3 -m pip install --upgrade pip
+
+cd kedegit
+
+pip install -r requirements.txt
+
+pip3 install names-matcher
+
+pip3 install numpy --upgrade
+
+deactivate
+
