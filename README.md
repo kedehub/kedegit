@@ -12,7 +12,7 @@ KEDE calculation is the heart of KEDEHub. It is based on the one and only scient
 
 After KEDE is calculated it is presented in visual formats. There are many reports ready for use to compare the capability of developers, projects, teams and even companies.
 
-More informatio can be found [here](https://docs.kedehub.io/get-started/how-does-kedehub-work.html)
+More information can be found [here](https://docs.kedehub.io/get-started/how-does-kedehub-work.html)
 
 ### Local Git client (KEDEGit)
 
@@ -38,13 +38,13 @@ Analysis is performed on local clones of Git repositories, ensuring:
 - No capture of your intellectual property through source code analysis
 - No analysis of commit messages
 
-Local client sends the results from the analysis to SaaS platform.
+Local client sends the results from the analysis to the SaaS platform.
 
-More informatio can be found [here](https://docs.kedehub.io/kedehub/kedehub-kedegit.html)
+More information can be found [here](https://docs.kedehub.io/kedehub/kedehub-kedegit.html)
 
 ## Using KEDEGit
 
-All you need to know is in [How to use KEDEGit](./docs/howto.md) document.
+All you need to know is in the [How to use KEDEGit](./docs/howto.md) document.
 
 ## Get involved
 
