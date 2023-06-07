@@ -46,42 +46,37 @@ sudo yum install python3-pip
 
 sudo yum groupinstall "Development Tools"
 
-Create a Virtual Environment:
+4. Clone KEDEGit Code from GitHub:
 
-4.1 Install virtualenv with pip:
-
-pip3 install --user virtualenv
-
-4.2 Create a new directory for your project:
-
-mkdir kedegit
-cd kedegit
-
-4.3 In your project directory, create a new virtual environment:
-
-python3 -m venv env39
-
-5. Activate the Virtual Environment:
-
-source ~/env39/bin/activate
-
-6. Clone KEDEGit Code from GitHub:
-
-6.1 Install git:
+4.1 Install git:
 
 sudo yum install git -y
 
 git version
 
-6.2 Clone your repository:
+4.2 Clone KEDEGit repository:
 
 git clone https://github.com/kedehub/kedegit.git
+
+5. Create a Virtual Environment:
+
+5.1 Install virtualenv with pip:
+
+pip3 install --user virtualenv
+
+5.2 In KEDEGit project directory, create a new virtual environment:
+
+cd kedegit
+
+python3 -m venv env
+
+6. Activate the Virtual Environment:
+
+source env/bin/activate
 
 7. Install Required Packages:
 
 python3 -m pip install --upgrade pip
-
-cd kedegit
 
 pip install -r requirements.txt
 
