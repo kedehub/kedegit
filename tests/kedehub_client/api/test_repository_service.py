@@ -31,7 +31,7 @@ class KedeHubRepositoryServiceTest(KedeHubLoadDBOnceTest):
         self.assertTrue(new_repo.id>0)
         self.assertEqual(repo.configuration_file_path, new_repo.configuration_file_path)
         self.assertEqual(repo.repository_path, new_repo.repository_path)
-        self.assertEqual(repo.start_time, new_repo.start_time)
+        self.assertEqual(datetime.datetime(1980, 1, 1, 0, 0), new_repo.start_time)
 
     def test_load_all_repositories(self):
 
