@@ -51,14 +51,36 @@ class KedeHubProjectServiceTest(KedeGitTest):
                           company_name='test_company')
         new_project = ensure_project_exists(project.project_name)
 
-        self.assertEqual(project, new_project)
+        self.assertEqual('test_2', new_project.long_name)
+        self.assertEqual('test_2', new_project.project_name)
+        self.assertEqual('test_company', new_project.company_name)
+
+    def test_save_new_project_make_lower_case(self):
+        project = Project(project_name = 'Test_2',
+                          company_name = 'test_company')
+        new_project = ensure_project_exists(project.project_name)
+
+        self.assertEqual('Test_2', new_project.long_name)
+        self.assertEqual('test_2', new_project.project_name)
+        self.assertEqual('test_company', new_project.company_name)
+
+    def test_save_new_project_name_with_space(self):
+        project = Project(project_name = 'test 2',
+                          company_name = 'test_company')
+        new_project = ensure_project_exists(project.project_name)
+
+        self.assertEqual('test 2', new_project.long_name)
+        self.assertEqual('test_2', new_project.project_name)
+        self.assertEqual('test_company', new_project.company_name)
 
     def test_not_saved_existing_project(self):
         project = Project(project_name = 'test',
                           company_name='test_company')
         new_project = ensure_project_exists(project.project_name)
 
-        self.assertEqual(project, new_project)
+        self.assertEqual('test', new_project.long_name)
+        self.assertEqual('test', new_project.project_name)
+        self.assertEqual('test_company', new_project.company_name)
 
     def test_get_all_projects(self):
         expected_project_names = ['test']

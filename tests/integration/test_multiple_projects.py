@@ -19,12 +19,12 @@ class KedeGitMultipleProjectsTest(KedeGitTest):
 
     def test_second_project_is_created(self):
         self._create_second_project()
-        self.assertEqual(self.otherKedeGit.project_name, 'otherTest')
+        self.assertEqual(self.otherKedeGit.project_name, 'othertest')
 
     def test_projects_are_inserted_in_database(self):
         self._create_second_project()
         project_names = load_all_project_names()
-        self.assertEqual(sorted(project_names), ['otherTest', 'test'])
+        self.assertEqual(sorted(project_names), ['othertest', 'test'])
 
     def test_commits_from_other_projects_are_not_included(self):
         self._create_second_project()
