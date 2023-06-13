@@ -146,7 +146,7 @@ class KedeGit:
         count_processed_committs = 0
         new_project = ensure_project_exists(self.project_name)
         self.project_name = new_project.project_name
-
+        print('Assigned project ID: {} to project: {}'.format(new_project.project_name, new_project.long_name))
         repository_path = os.path.abspath(repository_path)
         if not configuration_file_path:
             configuration_file_path = os.path.join(server_config.get_config_dir(), DEFAULT_CONFIGURATION_FILE_NAME)
