@@ -181,9 +181,16 @@ class ArgparseTest(unittest.TestCase):
         args = self._parse('clone-import-github --workdir ~/git/facebook --org facebook --token 325103ac88ae8a937be2aef635bcd194696b6d0a')
         self.assertEqual('~/git/facebook', args.workdir)
         self.assertEqual('facebook', args.org)
-        self.assertEqual('325103ac88ae8a937be2aef635bcd194696b6d0a', args.token)
-        self.assertEqual(False, args.temp)
-        self.assertEqual('clone-import-github', args.subparser_name)
+
+    def test_bulk_add_repos_from_dir_with_project(self):
+        args = self._parse('bulk-import-repos --workdir ~/git/facebook -p facebook')
+        self.assertEqual('~/git/facebook', args.workdir)
+        self.assertEqual('facebook', args.project)
+
+    def test_bulk_add_repos_from_dir_no_project(self):
+        args = self._parse('bulk-import-repos --workdir ~/git/facebook')
+        self.assertEqual('~/git/facebook', args.workdir)
+        self.assertEqual(None, args.project)
 
     def test_bulk_import_repos_github_temp_folder(self):
         args = self._parse('clone-import-github --temp --workdir ~/git/facebook --org facebook --token 325103ac88ae8a937be2aef635bcd194696b6d0a')

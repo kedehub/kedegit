@@ -123,7 +123,15 @@ def update_repos(options):
     update_repositories(repositories)
 
 def add_repository_to_a_project(options):
-    _add_repository(options.project, options.repository, options.configuration, options.earliest_commit_date)
+    if options.project is None:
+        return
+
+    count_processed_committs, project_name = _add_repository(options.project, options.repository, options.configuration, options.earliest_commit_date)
+
+    if ((count_processed_committs > 0)):
+        calculate_stats_for_project(project_name)
+
+    return count_processed_committs, project_name
 
 def _add_repository(project, repository, configuration = None, earliest_commit_date = None):
     print('Adding repo: {} to project {}'.format(repository, project))
@@ -136,7 +144,7 @@ def _add_repository(project, repository, configuration = None, earliest_commit_d
         count_processed_committs = kedegit.add_repository(repository, configuration, earliest_date=date)
     else:
         count_processed_committs = kedegit.add_repository(repository, configuration)
-    return count_processed_committs
+    return count_processed_committs, kedegit.project_name
 
 def list_projects(_):
     for name in load_all_project_names():
@@ -271,7 +279,7 @@ def _bulk_import_reps(cloner, repo_clone_urls, project, temp: bool = False):
             project_name = project
 
         if (clone_path):
-            count_processed_committs = _add_repository(project_name, clone_path)
+            count_processed_committs, project_name = _add_repository(project_name, clone_path)
             if temp:
                 delete_folder_contents(clone_path)
             if ((count_processed_committs > 0) and
@@ -280,7 +288,7 @@ def _bulk_import_reps(cloner, repo_clone_urls, project, temp: bool = False):
             success_import = success_import + 1
         repo_number = repo_number + 1
     if project is not None:
-        calculate_stats_for_project(project)
+        calculate_stats_for_project(project_name)
     print('Successfully imported {} out of {} repos'.format(success_import, number_or_repo_clone_urls))
 
 def bulk_import_gitlab_server_reps():
@@ -331,7 +339,7 @@ def import_repo_update_stats(cloner, repo_clone_url, temp :bool = False):
         clone_path = cloner.clone_repo(repo_clone_url)
         project_name = get_repo_name(repo_clone_url)
         if (clone_path):
-            count_processed_committs = _add_repository(project_name, clone_path)
+            count_processed_committs, project_name = _add_repository(project_name, clone_path)
             if temp:
                 delete_folder_contents(clone_path)
             if (count_processed_committs > 0):
@@ -349,10 +357,14 @@ def recalculate_rank_for_all_people():
 
 def bulk_add_repos_from_dir(options):
     working_directory = os.path.abspath(options.workdir)
+    if options.project is None:
+        project = None
+    else:
+        project = options.project
 
     try:
         repo_dirs = [f.path for f in os.scandir(working_directory) if f.is_dir()]
-        print(repo_dirs)
+        print('Repos to add: {}'.format(', '.join(repo_dirs)))
     except Exception as e:
         print('FATAL: Could not get sub-directories: ({}). Terminating.'.format(e))
         sys.exit(1)
@@ -360,6 +372,7 @@ def bulk_add_repos_from_dir(options):
     number_or_repo_dirs = len(repo_dirs)
     repo_number = 1
     success_import = 0
+    project_names = set()
 
     for repo_dir in repo_dirs:
         # Folder name should be the repo_dir's name
@@ -367,11 +380,24 @@ def bulk_add_repos_from_dir(options):
 
         brepo = get_git_repository(repo_dir)
         if brepo is None:
+            repo_number = repo_number + 1
             continue
-        remote_origin_url = get_repository_remote_origin_url(brepo)
-        project_name = get_repo_name(remote_origin_url)
+
+        try:
+            remote_origin_url = get_repository_remote_origin_url(brepo)
+        except ValueError:
+            print("'origin' remote does not exist for repository {}".format(brepo.git_dir))
+            repo_number = repo_number + 1
+            continue
+
+        if project is None:
+            project_name = project_name = get_repo_name(remote_origin_url)
+        else:
+            project_name = project
+
+        project_names.add(project_name)
         print('Importing repo {} with project name {}'.format(remote_origin_url, project_name))
-        count_processed_committs = _add_repository(project_name, repo_dir)
+        count_processed_committs, project_name = _add_repository(project_name, repo_dir)
         if (count_processed_committs > 0):
             calculate_stats_for_project(project_name)
         success_import = success_import + 1
@@ -379,6 +405,7 @@ def bulk_add_repos_from_dir(options):
 
     print('Successfully imported {} out of {} repos'.format(success_import, number_or_repo_dirs))
 
+    return success_import, number_or_repo_dirs, project_names
 
 def calculate_stats_for_project(project_name):
     persons = get_people_to_report_on([project_name],None)
@@ -523,6 +550,7 @@ def create_fix_wrongly_calculated_kede_stats(command_parsers):
 def create_bulk_add_repos_from_dir_parser(command_parsers):
     bulk_init_parser = command_parsers.add_parser('bulk-import-repos', help='Bulk insert into Kedehub all reps from a directory')
     bulk_init_parser.add_argument('--workdir', help='Path to the directory where are the repos')
+    bulk_init_parser.add_argument('-p','--project', help='Project name to be set to all repos from the dir')
     bulk_init_parser.set_defaults(func=bulk_add_repos_from_dir)
 
 def create_stats_parser(command_parsers):
