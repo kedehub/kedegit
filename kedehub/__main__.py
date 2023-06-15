@@ -131,6 +131,7 @@ def add_repository_to_a_project(options):
     if ((count_processed_committs > 0)):
         calculate_stats_for_project(project_name)
 
+    print('Successfully initialized project with ID = {} '.format(project_name))
     return count_processed_committs, project_name
 
 def _add_repository(project, repository, configuration = None, earliest_commit_date = None):
