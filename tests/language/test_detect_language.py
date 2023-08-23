@@ -163,6 +163,7 @@ class KedeGitLanguageTestCase(unittest.TestCase):
         self.assertTrue(detect_language("/tmp/some_file.tex") == "TeX")
         self.assertTrue(detect_language("/tmp/some_file.ros") == "Rosetta DSL")
         self.assertTrue(detect_language("/tmp/some_file.txt") == "Text")
+        self.assertTrue(detect_language("/tmp/some_file.tpl") == "Smarty")
 
 if __name__ == '__main__':
     unittest.main()

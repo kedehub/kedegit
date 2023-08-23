@@ -91,6 +91,7 @@ supported_languages = {
     'TeX': ['tex'],
     'Rosetta DSL': ['ros'],
     'Text': ['txt'],
+    'Smarty': ['tpl']
 }
 
 _ext_lang = {}
