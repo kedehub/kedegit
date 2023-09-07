@@ -147,10 +147,14 @@ def get_git_repository(repository_path):
     try:
         repository = Repo(repository_path)
     except:
+        print(f"The directory {repository_path} is not a valid git repository.")
         return None
     return repository
 
 def get_repository_remote_origin_url(repo: Repo):
+    if repo is None:
+        print("Invalid Repo object.")
+        return None
     git = repo.git
     # Command to get URL for repository: (your_remote)
     # git config --get remote.origin.url
