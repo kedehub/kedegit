@@ -17,9 +17,9 @@ cd git/kedegit
 
 source venv39/bin/activate
 
-pyinstaller --name kedegit --distpath ./dist/mac_dist --paths ./venv39/lib/python3.9/site-packages/ kedehub/__main__.py --add-data kedehub/matching/blacklists:kedehub/matching/blacklists
+pyinstaller --onefile  --name kedegit --distpath ./dist/mac_dist --paths ./venv39/lib/python3.9/site-packages/ kedehub/__main__.py
 
-./dist/mac_dist/kedegit/kedegit list-projects
+./dist/mac_dist/kedegit list-projects
 
 deactivate
 
@@ -31,9 +31,9 @@ cd kedegit
 
 source ~/kedegit/env/bin/activate
 
-pyinstaller --name kedegit --distpath ./dist/aws_dist --paths ./env/lib/python3.9/site-packages/ kedehub/__main__.py --add-data kedehub/matching/blacklists:kedehub/matching/blacklists
+pyinstaller --onefile  --name kedegit --distpath ./dist/aws_dist --paths ./venv39/lib/python3.9/site-packages/ kedehub/__main__.py
 
-./dist/aws_dist/kedegit/kedegit list-projects
+./dist/aws_dist/kedegit list-projects
 
 deactivate
 
