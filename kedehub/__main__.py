@@ -595,8 +595,12 @@ def create_templates_parser(command_parsers):
 def Main() -> None:
     # parse the args
     parsed_args = parse_args(sys.argv[1:])
-    # call whatever function was selected
-    parsed_args.func(parsed_args)
+    # Check if 'func' attribute exists
+    if hasattr(parsed_args, 'func'):
+        # call whatever function was selected
+        parsed_args.func(parsed_args)
+    else:
+        print("Please provide valid arguments. Use --help for more information.")
 
 if __name__ == '__main__':
   Main()
