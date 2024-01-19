@@ -7,12 +7,12 @@ from pydantic.main import BaseModel
 class Project(BaseModel):
 
     project_name : str
-    start_date : Optional[datetime]
+    start_date : Optional[datetime] = None
     company_name : str
-    long_name : Optional[str]
-    is_active : Optional[bool]
-    is_private : Optional[bool]
-    description : Optional[str]
+    long_name : Optional[str] = None
+    is_active : Optional[bool] = None
+    is_private : Optional[bool] = None
+    description : Optional[str] = None
 
     class Config:
-        orm_mode = True
+        from_attributes = True

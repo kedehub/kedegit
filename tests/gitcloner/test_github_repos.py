@@ -14,7 +14,7 @@ class GithubReposTestCase(unittest.TestCase):
         repos = self.client.get_repos()
         self.assertGreater(len(repos), 1)
 
-        self.assertEqual('https://github.com/facebook/hhvm.git', repos[1])
+        self.assertEqual('https://github.com/facebook/pyre2.git', repos[1])
 
 
 

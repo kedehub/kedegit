@@ -10,13 +10,13 @@ class KedeGitTestJson(unittest.TestCase):
                        index=['index " 1', 'index / 2'],
                        columns=['a \\ b', 'y / z'])
 
-        assert_frame_equal(df, read_json(df.to_json(orient='split'),
+        assert_frame_equal(df, read_json(StringIO(df.to_json(orient='split')),
                                          orient='split'))
-        assert_frame_equal(df, read_json(df.to_json(orient='columns'),
+        assert_frame_equal(df, read_json(StringIO(df.to_json(orient='columns')),
                                          orient='columns'))
-        assert_frame_equal(df, read_json(df.to_json(orient='index'),
+        assert_frame_equal(df, read_json(StringIO(df.to_json(orient='index')),
                                          orient='index'))
-        df_unser = read_json(df.to_json(orient='records'), orient='records')
+        df_unser = read_json(StringIO(df.to_json(orient='records')), orient='records')
         assert_index_equal(df.columns, df_unser.columns)
         assert_numpy_array_equal(df.values, df_unser.values)
 

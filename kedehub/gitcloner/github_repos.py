@@ -1,4 +1,4 @@
-from github import Github
+from github import Github, Auth
 from github.PaginatedList import PaginatedList
 
 class GithubClient:
@@ -7,14 +7,11 @@ class GithubClient:
         self.token = token
         self.organization = organization
 
-    def get_repos(self) -> PaginatedList:
+    def get_repos(self):
         # https://pygithub.readthedocs.io/en/latest/utilities.html#pagination
-        g = Github(self.token)
+        g = Github(auth=Auth.Token(self.token))
         org = g.get_organization(self.organization)
         repos = org.get_repos()
 
-        # https://pygithub.readthedocs.io/en/latest/github_objects/Repository.html
-        repo_names = list()
-        for repo in repos:
-            repo_names.append(repo.clone_url)
+        repo_names = [repo.clone_url for repo in repos]
         return repo_names

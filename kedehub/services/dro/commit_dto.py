@@ -23,4 +23,4 @@ class Commit(BaseModel):
         return _time_offset_to_local_time(self.commit_time, self.commit_time_utc_offset)
 
     class Config:
-        orm_mode = True
+        from_attributes = True

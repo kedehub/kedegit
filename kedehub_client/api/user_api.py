@@ -16,7 +16,7 @@ class _UserApi:
 
     def _build_create_new_user(self, user, company):
         url = '/users/create/'+company
-        return self.api_client.request(type_= User, method="POST", url=url, data =user.json())
+        return self.api_client.request(type_= User, method="POST", url=url, content =user.model_dump_json())
 
     def _build_find_user_by_email(self, email: EmailStr):
         url = '/users'

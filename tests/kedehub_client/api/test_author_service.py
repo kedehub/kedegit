@@ -5,7 +5,6 @@ from tests.kedegit_test import KedeGitTest
 from kedehub.services.dro.author_dto import Author
 from kedehub.services.author_service import load_authors_for_projects, save_new_author, \
     build_author_map, assign_author_to_user_profile
-from kedehub_client import exceptions
 from kedehub.git.git_utility import filter_invalid_unicode_sequences
 
 
@@ -33,8 +32,8 @@ class KedeGitAuthorServiceTest(KedeGitTest):
 
     def test_save_new_author(self):
         new_outhor = save_new_author('test_author <test@email.com>')
-        expected = '{"canonical_name": "test_author <test@email.com>", "aliases": null, "name": "test_author", "email": "test@email.com", "user_id": null}'
-        self.assertEqual(expected, new_outhor.json())
+        expected = '{"canonical_name":"test_author <test@email.com>","aliases":null,"name":"test_author","email":"test@email.com","user_id":null}'
+        self.assertEqual(expected, new_outhor.model_dump_json())
 
     def test_build_author_mapt(self):
         expected = {'Atanas Atanasov <atanas.atanasov@elando.bg>': Author(canonical_name='Atanas Atanasov <atanas.atanasov@elando.bg>', aliases=None, name='Atanas Atanasov', email='atanas.atanasov@elando.bg', user_id=None),

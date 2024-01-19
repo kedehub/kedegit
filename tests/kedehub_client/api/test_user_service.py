@@ -24,7 +24,7 @@ class UserServiceTestCase(KedeGitTest):
 
         expected_user_to_create = User(
             name='test_user',
-            primary_email=EmailStr('atanas.atanasov@elando.bg')
+            primary_email='atanas.atanasov@elando.bg'
         )
 
         created_user = create_new_user(expected_user_to_create)

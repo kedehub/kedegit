@@ -17,7 +17,7 @@ class Repository(BaseModel):
     head_commit_id : Optional[str] = None
     start_time : Optional[datetime] = None
     start_time_utc_offset : Optional[int] = None
-    company_name : Optional[str]
+    company_name : Optional[str] = None
     configuration : Optional[Any] = None
     git_repository : Optional[Any] = None
 
@@ -36,4 +36,4 @@ class Repository(BaseModel):
             return None
 
     class Config:
-        orm_mode = True
+        from_attributes = True

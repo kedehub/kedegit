@@ -16,14 +16,14 @@ class _OutliersApi:
         author = Author(canonical_name = person,
                             name = " ",
                             email = " ")
-        return self.api_client.request(type_=str, method="GET", url=url, data = author.json())
+        return self.api_client.request(type_=str, method="GET", url=url, content = author.model_dump_json())
 
     def _build_auto_update_outliers(self, company, person):
         url = "/companies/"+company+"/outliers/persons"
         author = Author(canonical_name = person,
                             name = " ",
                             email = " ")
-        return self.api_client.request(type_=str, method="PUT", url=url, data = author.json())
+        return self.api_client.request(type_=str, method="PUT", url=url, content = author.model_dump_json())
 
 class AsyncOutliersApi(_OutliersApi):
     pass

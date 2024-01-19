@@ -14,7 +14,7 @@ class _RepositoryApi:
         repo.company_name = company
         url = "/companies/"+company+"/repositories"
         return self.api_client.request(type_= Repository, method="POST", url=url,
-                                       data =repo.json(exclude={'repository_path','configuration_file_path', 'configuration','git_repository'}))
+                                       content =repo.model_dump_json(exclude={'repository_path','configuration_file_path', 'configuration','git_repository'}))
 
     def _build_get_company_repositories(self, company):
         url = "/companies/"+company+"/repositories"

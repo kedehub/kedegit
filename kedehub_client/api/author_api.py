@@ -31,7 +31,7 @@ class _AuthorApi:
         new_author = Author(canonical_name = author_name,
                             name = name,
                             email = email)
-        return self.api_client.request(type_= Author, method="POST", url=url, data =new_author.json())
+        return self.api_client.request(type_= Author, method="POST", url=url, content =new_author.model_dump_json())
 
     def _build_update_author_to_user_profile(self, author, company):
         url = '/companies/'+company+'/authors'
@@ -39,7 +39,7 @@ class _AuthorApi:
                             name = "",
                             email = "",
                             user_id = author.user_id)
-        return self.api_client.request(type_= int, method="PUT", url=url, data =new_author.json())
+        return self.api_client.request(type_= int, method="PUT", url=url, content =new_author.model_dump_json())
 
 class AsyncAuthorApi(_AuthorApi):
     pass

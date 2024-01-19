@@ -20,10 +20,10 @@ HTTP_401_UNAUTHORIZED = 401
 
 
 class BaseTokenRequest(BaseModel):
-    scope: Optional[str]
+    scope: Optional[str] = None
 
     def request_dict(self) -> Dict[str, str]:
-        request_dict = self.dict()
+        request_dict = self.model_dump()
         if request_dict["scope"] is None:
             del request_dict["scope"]
         return request_dict
@@ -42,21 +42,21 @@ class AccessTokenRequest(BaseTokenRequest):
     grant_type: Literal["password"] = "password"
     username: str
     password: str
-    scope: Optional[str]
+    scope: Optional[str] = None
 
 
 class RefreshTokenRequest(BaseTokenRequest):
     grant_type: Literal["refresh_token"] = "refresh_token"
     refresh_token: str
-    scope: Optional[str]
+    scope: Optional[str] = None
 
 
 class TokenSuccessResponse(BaseModel):
     access_token: str
     token_type: str
-    expires_in: Optional[int]
-    refresh_token: Optional[str]
-    scope: Optional[str]
+    expires_in: Optional[int] = None
+    refresh_token: Optional[str] = None
+    scope: Optional[str] = None
 
 
 class TokenErrorType(Enum):
@@ -70,8 +70,8 @@ class TokenErrorType(Enum):
 
 class TokenErrorResponse(BaseModel):
     error: Union[TokenErrorType, str]
-    error_description: Optional[str]
-    error_uri: Optional[str]
+    error_description: Optional[str] = None
+    error_uri: Optional[str] = None
 
 
 TokenResponse = Union[TokenSuccessResponse, TokenErrorResponse]
@@ -80,9 +80,9 @@ TokenResponse = Union[TokenSuccessResponse, TokenErrorResponse]
 def parse_token_response(response: Response) -> TokenResponse:
     with suppress(ValidationError):
         if response.status_code == HTTP_200_OK:
-            return TokenSuccessResponse.parse_raw(response.text)
+            return TokenSuccessResponse.model_validate_json(response.text)
         if response.status_code in (HTTP_400_BAD_REQUEST, HTTP_401_UNAUTHORIZED):
-            return TokenErrorResponse.parse_raw(response.text)
+            return TokenErrorResponse.model_validate_json(response.text)
     raise UnexpectedResponse.for_response(response)
 
 

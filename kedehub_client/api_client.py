@@ -53,7 +53,7 @@ class ApiClient:
     def __init__(self, host: str = None, **kwargs: Any) -> None:
         self.host = host
         self.middleware: MiddlewareT = BaseMiddleware()
-        self._async_client = AsyncClient(**kwargs)
+        self._async_client = AsyncClient(timeout=None, **kwargs)
 
     @overload
     async def request(
@@ -102,7 +102,7 @@ class ApiClient:
     async def send_inner(self, request: Request) -> Response:
         try:
             # https://www.python-httpx.org/advanced/#setting-and-disabling-timeouts
-            response = await self._async_client.send(request, timeout=None)
+            response = await self._async_client.send(request)
         except Exception as e:
             raise ResponseHandlingException(e)
         return response

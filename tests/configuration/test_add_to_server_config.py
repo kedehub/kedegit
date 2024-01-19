@@ -29,7 +29,7 @@ class AddRepoServerConfigTest(unittest.TestCase):
                 company:
                     name: test_company
                     user: af9b995c-956e-49ad-a6ac-26a72613f075
-                    token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiYWY5Yjk5NWMtOTU2ZS00OWFkLWE2YWMtMjZhNzI2MTNmMDc1IiwiY29tcGFueV9uYW1lIjoidGVzdF9jb21wYW55IiwiYXVkIjoia2VkZWh1YjpzaWduaW4iLCJleHAiOjE2MjYzNjMwNzZ9.fD3oNUx3YBewbYzirR8prr4sPmEQpCIkB8udMR2fsuI
+                    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiYWY5Yjk5NWMtOTU2ZS00OWFkLWE2YWMtMjZhNzI2MTNmMDc1IiwiY29tcGFueV9uYW1lIjoidGVzdF9jb21wYW55IiwiYXVkIjoia2VkZWh1YjpzaWduaW4iLCJleHAiOjE3MTMyMjQyMjR9.eVMZAn_yrZJg9ITmwm6iWIgkjehCbwfqZuuZlz-r3gU
                 
                 repos:
                 -   origin: https://gitlab.com/Company_Name/repository_name.git
@@ -72,7 +72,7 @@ class AddRepoServerConfigTest(unittest.TestCase):
                     company:
                         name: test_company
                         user: af9b995c-956e-49ad-a6ac-26a72613f075
-                        token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiYWY5Yjk5NWMtOTU2ZS00OWFkLWE2YWMtMjZhNzI2MTNmMDc1IiwiY29tcGFueV9uYW1lIjoidGVzdF9jb21wYW55IiwiYXVkIjoia2VkZWh1YjpzaWduaW4iLCJleHAiOjE2MjYzNjMwNzZ9.fD3oNUx3YBewbYzirR8prr4sPmEQpCIkB8udMR2fsuI
+                        token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiYWY5Yjk5NWMtOTU2ZS00OWFkLWE2YWMtMjZhNzI2MTNmMDc1IiwiY29tcGFueV9uYW1lIjoidGVzdF9jb21wYW55IiwiYXVkIjoia2VkZWh1YjpzaWduaW4iLCJleHAiOjE3MTMyMjQyMjR9.eVMZAn_yrZJg9ITmwm6iWIgkjehCbwfqZuuZlz-r3gU
                     repos: [{origin: 'http://git.test.com/test_company/test_repo.git', repository_path: /Users/dimitarbakardzhiev/git/test_repo, configuration_file_path: /Users/dimitarbakardzhiev/git/kedehub/kede-config.json}]
         """).strip()
         self.assertEqual(expected_config, yaml)

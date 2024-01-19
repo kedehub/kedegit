@@ -17,12 +17,12 @@ class _ProjectApi:
         return self.api_client.request(type_= List[str], method="GET", url= url)
 
     def _build_for_add_new_project_repository(self, project_repository, company: str):
-        url = '/companies/' + company +'/projects/'+ project_repository.project_name +'/repos/'+project_repository.repository_id
+        url = '/companies/' + company +'/projects/'+ project_repository.project_name +'/repos/'+str(project_repository.repository_id)
         return self.api_client.request(type_= ProjectRepository, method="POST", url=url)
 
     def _build_for_save_project_if_not_exists(self, project, company: str):
         url = '/companies/' + company + '/projects'
-        return self.api_client.request(type_= Project, method="POST", url=url, data =project.json())
+        return self.api_client.request(type_= Project, method="POST", url=url, content =project.model_dump_json())
 
 
 

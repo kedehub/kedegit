@@ -17,7 +17,7 @@ class _CommitApi:
 
     def _build_store_new_commit(self, commit_dto, company: str):
         url = '/companies/' + company + "/commits"
-        return self.api_client.request(type_= Commit, method="POST", url=url, data =commit_dto.json())
+        return self.api_client.request(type_= Commit, method="POST", url=url, content =commit_dto.model_dump_json())
 
     def _build_get_commits_per_company(self, company: str):
         url = '/companies/' + company + '/commits'

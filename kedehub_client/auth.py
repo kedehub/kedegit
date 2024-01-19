@@ -19,12 +19,12 @@ HTTP_401_UNAUTHORIZED = 401
 
 
 class AuthState(BaseModel):
-    username: Optional[str]
-    password: Optional[str]
-    access_token: Optional[str]
-    refresh_token: Optional[str]
-    expires_at: Optional[datetime]  # should be UTC
-    scope: Optional[str]
+    username: Optional[str] = None
+    password: Optional[str] = None
+    access_token: Optional[str] = None
+    refresh_token: Optional[str] = None
+    expires_at: Optional[datetime] = None  # should be UTC
+    scope: Optional[str] = None
 
     def get_login_request(self) -> Optional[AccessTokenRequest]:
         if self.username is None or self.password is None:

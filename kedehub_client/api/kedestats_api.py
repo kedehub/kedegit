@@ -15,14 +15,14 @@ class _KedeStatsApi:
         author = Author(canonical_name=person,
                         name=" ",
                         email=" ")
-        return self.api_client.request(type_= str, method="POST", url=url, data = author.json())
+        return self.api_client.request(type_= str, method="POST", url=url, content = author.model_dump_json())
 
     def _build_for_post_calculate_weekly_kede_for_person(self, company, project, person):
         url = "/companies/"+company+'/projects/'+project+"/person/kedestats/calculate?freq=W"
         author = Author(canonical_name=person,
                         name=" ",
                         email=" ")
-        return self.api_client.request(type_= str, method="POST", url=url, data = author.json())
+        return self.api_client.request(type_= str, method="POST", url=url, content = author.model_dump_json())
 
     def _build_get_wrongly_calculated_kede_stats_for_authors_repo_id(self, company, repository_id: int, kede_freq: str):
         url = '/companies/' + company + '/kedestats/wrongly-calculated-kede?repository_id='+str(repository_id)+'&kede_freq='+kede_freq

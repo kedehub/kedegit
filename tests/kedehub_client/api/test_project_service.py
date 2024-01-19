@@ -40,11 +40,13 @@ class KedeHubProjectServiceTest(KedeGitTest):
     def test_assign_non_existing_repo_to_existing_project(self):
         project_repository = ProjectRepository(
                                   project_name = 'test',
-                                  repository_id = 3)
+                                  repository_id = 300)
 
-        with self.assertRaises(UnexpectedResponse):
-            assign_new_repo_to_existing_project(project_repository.project_name,
-                                                                         project_repository.repository_id)
+        new_project_repository = assign_new_repo_to_existing_project(project_repository.project_name,
+                                            project_repository.repository_id)
+
+        self.assertIsNone(new_project_repository)
+
 
     def test_save_new_project(self):
         project = Project(project_name = 'test_2',
