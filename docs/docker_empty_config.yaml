@@ -1,0 +1,9 @@
+server:
+    protocol: http
+    host: host.docker.internal
+    port: 5400
+
+company:
+    name:
+    user:
+    token:
