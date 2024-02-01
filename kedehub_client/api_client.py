@@ -1,7 +1,7 @@
 from asyncio import get_event_loop
 from functools import lru_cache
 from typing import Any, Awaitable, Callable, Dict, Generic, Type, TypeVar, overload
-
+import sys
 from httpx import AsyncClient, Request, Response
 from pydantic import ValidationError
 
@@ -97,7 +97,11 @@ class ApiClient:
                 return parse_as_type(response.json(), type_)
             except ValidationError as e:
                 raise ResponseHandlingException(e)
-        raise UnexpectedResponse.for_response(response)
+        elif response.status_code == 401:
+            print("Authorization failed. Please check your user or token.")
+            sys.exit(1)
+        else:
+            print(f"An unexpected error occurred: {e}")
 
     async def send_inner(self, request: Request) -> Response:
         try:
