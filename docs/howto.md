@@ -16,9 +16,9 @@ The environment variable name for KEDEGit is KEDEGITDIR.
 This guide shows how to use KEDEGit on Amazon EC2 
 
 For EC2 the configuration directory is: 
-```commandline
+````commandline
 /home/ec2-user/.config/KedeGit
-```
+````
 You need to create it before proceeding further.
 
 ````commandline
@@ -94,24 +94,38 @@ If the company has no projects yet nothing will be listed.
 
 ## Initializing a New Project
 
-Create a new project called NEW_PROJECT, consisting of a local Git repository located at  `~/git/repo_1`.
+For testing KEDEGit we will use its source code repository located at https://github.com/kedehub/kedegit. 
+We will clone the repository at `~/git/kedegit`.
+
+Now, using the below command, we will initialize a new project called NEW_PROJECT, 
+with the source code of the local Git repository located at  `~/git/kedegit`.
 
 
 ```commandline
-python3 -m kedehub init-project NEW_PROJECT ~/git/repo_1
+python3 -m kedehub init-project NEW_PROJECT ~/git/kedegit
 ```
-
+The same with Docker:
+```commandline
+docker run --rm --name kedegit-container -v ~/git/kedegit/docs:/root/.config/KedeGit -v ~/git:/usr/data kedegit-image:latest init-project NEW_PROJECT /usr/data/kedegit
+```
 
 ## Adding a New Repository to an Existing Project
 
-Add a new local Git repository located at `~/git/repo_2` to `NEW_PROJECT`.
+Now, we will add another repository to `NEW_PROJECT`.  
+That will be the KEDEMatcher located at https://github.com/kedehub/kedematcher.
+We will clone it in  tew local Git repository located at `~/git/kedematcher` 
+Then we can execute the below command:
 ```commandline
-python3 -m kedehub add-repository NEW_PROJECT ~/git/repo_2
+python3 -m kedehub add-repository NEW_PROJECT ~/git/kedematcher
+```
+The same with Docker:
+```commandline
+docker run --rm --name kedegit-container -v ~/git/kedegit/docs:/root/.config/KedeGit -v ~/git:/usr/data kedegit-image:latest add-repository NEW_PROJECT /usr/data/kedematcher
 ```
 
 ## Updating Project Statistics
 
-The <strong>update-projects</strong> ccommand performs the following actions:
+The <strong>update-projects</strong> command performs the following actions:
 
 - Analyzes all new commits
 - Calculates KEDE and other statistics for the new commits
@@ -120,6 +134,11 @@ The <strong>update-projects</strong> ccommand performs the following actions:
 To update the statistics for a single existing project, execute:
 ```commandline
 python3 -m kedehub update-projects -p NEW_PROJECT
+```
+
+The same with Docker:
+```commandline
+docker run --rm --name kedegit-container -v ~/git/kedegit/docs:/root/.config/KedeGit -v ~/git:/usr/data kedegit-image:latest update-projects -p NEW_PROJECT
 ```
 
 To update the statistics for multiple existing projects, execute:
@@ -131,10 +150,19 @@ To update the statistics for all projects within a company with new code contrib
 ```commandline
 python3 -m kedehub update-projects
 ```
+The same with Docker:
+```commandline
+docker run --rm --name kedegit-container -v ~/git/kedegit/docs:/root/.config/KedeGit -v ~/git:/usr/data kedegit-image:latest update-projects
+```
+
 ## Fixing Incorrectly Calculated KEDE for a Project
 After completing the addition of repositories to a project, it is recommended to recalculate KEDE. Recalculate KEDE for `NEW_PROJECT`.
 ```commandline
 python3 -m kedehub fix-kede -p NEW_PROJECT
+```
+The same with Docker:
+```commandline
+docker run --rm --name kedegit-container -v ~/git/kedegit/docs:/root/.config/KedeGit -v ~/git:/usr/data kedegit-image:latest fix-kede -p NEW_PROJECT
 ```
 
 ## Updating Local Project Repositories
@@ -142,6 +170,12 @@ New code is constantly contributed to all company repositories. To update local 
 ```commandline
 python3 -m kedehub update-repos
 ```
+
+The same with Docker:
+```commandline
+docker run --rm --name kedegit-container -v ~/git/kedegit/docs:/root/.config/KedeGit -v ~/git:/usr/data kedegit-image:latest update-repos
+```
+
 `
 
 

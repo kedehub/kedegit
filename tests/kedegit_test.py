@@ -29,10 +29,10 @@ class KedeGitTest(unittest.TestCase):
         self.proc = subprocess.Popen(['/Users/dimitarbakardzhiev/git/kedehub_server/venv311/bin/python3', '-m' ,'tests'],
                                      cwd = '/Users/dimitarbakardzhiev/git/kedehub_server/',
                                      stdin=subprocess.PIPE)
-        time.sleep(5.5)
+        time.sleep(6.5)
         self.kedegit = self._make_kedegit('test')
 
     def tearDown(self):
         self.proc.communicate(input=b"stop", timeout=5)
         self.proc.terminate()
-        time.sleep(5.5)
+        time.sleep(6.5)
