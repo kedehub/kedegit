@@ -8,5 +8,5 @@ docker image inspect kedegit-image --format '{{.Architecture}}'
 
 2. Run the Docker Container
 
-docker run --rm --name kedegit-container -v /Users/dimitarbakardzhiev/git/kedegit/docs:/root/.config/KedeGit kedegit-image:latest list-projects
+docker run --rm --add-host=host.docker.internal:host-gateway --name kedegit-container -v ~/git/kedegit/docs:/root/.config/KedeGit kedegit-image:latest list-projects
 

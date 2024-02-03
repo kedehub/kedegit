@@ -106,7 +106,7 @@ python3 -m kedehub init-project NEW_PROJECT ~/git/kedegit
 ```
 The same with Docker:
 ```commandline
-docker run --rm --name kedegit-container -v ~/git/kedegit/docs:/root/.config/KedeGit -v ~/git:/usr/data kedegit-image:latest init-project NEW_PROJECT /usr/data/kedegit
+docker run --rm --add-host=host.docker.internal:host-gateway --name kedegit-container -v ~/git/kedegit/docs:/root/.config/KedeGit -v ~/git:/usr/data kedegit-image:latest init-project NEW_PROJECT /usr/data/kedegit
 ```
 
 ## Adding a New Repository to an Existing Project
@@ -120,7 +120,7 @@ python3 -m kedehub add-repository NEW_PROJECT ~/git/kedematcher
 ```
 The same with Docker:
 ```commandline
-docker run --rm --name kedegit-container -v ~/git/kedegit/docs:/root/.config/KedeGit -v ~/git:/usr/data kedegit-image:latest add-repository NEW_PROJECT /usr/data/kedematcher
+docker run --rm --add-host=host.docker.internal:host-gateway --name kedegit-container -v ~/git/kedegit/docs:/root/.config/KedeGit -v ~/git:/usr/data kedegit-image:latest add-repository NEW_PROJECT /usr/data/kedematcher
 ```
 
 ## Updating Project Statistics
@@ -138,7 +138,7 @@ python3 -m kedehub update-projects -p NEW_PROJECT
 
 The same with Docker:
 ```commandline
-docker run --rm --name kedegit-container -v ~/git/kedegit/docs:/root/.config/KedeGit -v ~/git:/usr/data kedegit-image:latest update-projects -p NEW_PROJECT
+docker run --rm --add-host=host.docker.internal:host-gateway --name kedegit-container -v ~/git/kedegit/docs:/root/.config/KedeGit -v ~/git:/usr/data kedegit-image:latest update-projects -p NEW_PROJECT
 ```
 
 To update the statistics for multiple existing projects, execute:
@@ -152,7 +152,7 @@ python3 -m kedehub update-projects
 ```
 The same with Docker:
 ```commandline
-docker run --rm --name kedegit-container -v ~/git/kedegit/docs:/root/.config/KedeGit -v ~/git:/usr/data kedegit-image:latest update-projects
+docker run --rm --add-host=host.docker.internal:host-gateway --name kedegit-container -v ~/git/kedegit/docs:/root/.config/KedeGit -v ~/git:/usr/data kedegit-image:latest update-projects
 ```
 
 ## Fixing Incorrectly Calculated KEDE for a Project
@@ -162,7 +162,7 @@ python3 -m kedehub fix-kede -p NEW_PROJECT
 ```
 The same with Docker:
 ```commandline
-docker run --rm --name kedegit-container -v ~/git/kedegit/docs:/root/.config/KedeGit -v ~/git:/usr/data kedegit-image:latest fix-kede -p NEW_PROJECT
+docker run --rm --add-host=host.docker.internal:host-gateway --name kedegit-container -v ~/git/kedegit/docs:/root/.config/KedeGit -v ~/git:/usr/data kedegit-image:latest fix-kede -p NEW_PROJECT
 ```
 
 ## Updating Local Project Repositories
@@ -173,7 +173,7 @@ python3 -m kedehub update-repos
 
 The same with Docker:
 ```commandline
-docker run --rm --name kedegit-container -v ~/git/kedegit/docs:/root/.config/KedeGit -v ~/git:/usr/data kedegit-image:latest update-repos
+docker run -it --rm --add-host=host.docker.internal:host-gateway --name kedegit-container -v ~/git/kedegit/docs:/root/.config/KedeGit -v ~/git:/usr/data kedegit-image:latest update-repos
 ```
 
 `
