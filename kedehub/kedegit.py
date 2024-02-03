@@ -4,7 +4,7 @@ import re
 from operator import itemgetter
 from tqdm import tqdm
 from . import server_config
-from .git.git_utility import _make_diffed_commit_char_stats, EMPTY_TREE_SHA, get_git_repository, \
+from .gitclient.git_utility import _make_diffed_commit_char_stats, EMPTY_TREE_SHA, get_git_repository, \
     get_parrent_commit, get_repository_remote_origin_url, is_commit_merged_after_a_datetime, \
     filter_invalid_unicode_sequences
 from .services.author_service import save_new_author

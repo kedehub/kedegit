@@ -3,7 +3,7 @@ from git import RemoteProgress
 from git import Repo
 import sys
 
-from kedehub.git.git_utility import get_repo_name
+from kedehub.gitclient.git_utility import get_repo_name
 from kedehub import server_config
 
 class CloneProgress(RemoteProgress):

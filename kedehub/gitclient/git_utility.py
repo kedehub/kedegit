@@ -7,7 +7,7 @@ from git import Repo, Commit
 from unidiff import PatchSet
 
 # https://stackoverflow.com/questions/9765453/is-gits-semi-secret-empty-tree-object-reliable-and-why-is-there-not-a-symbolic/9766506#9766506
-from kedehub.git.levenshtein_utility import find_added_deleted_chars_in_hunk, LINE_DELETED_KEY, LINE_ADDED_KEY
+from kedehub.gitclient.levenshtein_utility import find_added_deleted_chars_in_hunk, LINE_DELETED_KEY, LINE_ADDED_KEY
 from kedehub.language.detect_language import detect_language
 from kedehub.utility.time_utility import _time_offset_to_local_time
 

@@ -1,6 +1,6 @@
 import unittest
 from Levenshtein import editops
-from kedehub.git.levenshtein_utility import LINE_DELETED_KEY, LINE_ADDED_KEY, \
+from kedehub.gitclient.levenshtein_utility import LINE_DELETED_KEY, LINE_ADDED_KEY, \
     find_added_deleted_chars_in_hunk
 from unidiff.patch import (
     LINE_TYPE_ADDED,

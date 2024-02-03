@@ -1,6 +1,6 @@
 import unittest
 
-from kedehub.git.git_utility import filter_invalid_unicode_sequences
+from kedehub.gitclient.git_utility import filter_invalid_unicode_sequences
 
 INVALID_UNICODE_STRING = '\udce5\udcae\udc9e\udce7\udc8e\udcb0'
 INVALID_UNICODE_STRING_2 = 'H\udce5kon L\udcf8vdal <Hakon.Lovdal@ericsson.com>'

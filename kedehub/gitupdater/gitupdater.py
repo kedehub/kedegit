@@ -1,5 +1,5 @@
 import git
-from kedehub.git.git_utility import get_git_repository
+from kedehub.gitclient.git_utility import get_git_repository
 from kedehub import bcolors
 
 

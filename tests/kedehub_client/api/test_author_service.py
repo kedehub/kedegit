@@ -5,7 +5,7 @@ from tests.kedegit_test import KedeGitTest
 from kedehub.services.dro.author_dto import Author
 from kedehub.services.author_service import load_authors_for_projects, save_new_author, \
     build_author_map, assign_author_to_user_profile
-from kedehub.git.git_utility import filter_invalid_unicode_sequences
+from kedehub.gitclient.git_utility import filter_invalid_unicode_sequences
 
 
 class KedeGitAuthorServiceTest(KedeGitTest):

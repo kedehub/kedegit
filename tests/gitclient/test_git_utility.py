@@ -1,6 +1,6 @@
 import unittest
 
-from kedehub.git.git_utility import get_repo_name
+from kedehub.gitclient.git_utility import get_repo_name
 
 
 class KedeGitUtilityTest(unittest.TestCase):

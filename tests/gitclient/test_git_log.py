@@ -1,6 +1,8 @@
 import os
 import unittest
+
 import git
+
 
 class KedeGitLogTestCase(unittest.TestCase):
 

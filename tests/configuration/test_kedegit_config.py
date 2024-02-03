@@ -12,7 +12,7 @@ class KedeGitConfigurationTestCase(unittest.TestCase):
         self.server_config = ServerConfiguration().config
 
     def test_conf_dir_location(self):
-        self.assertEqual('/Users/dimitarbakardzhiev/git/kedegit_public/tests/data', self.server_config.config_dir())
+        self.assertEqual('/Users/dimitarbakardzhiev/git/kedegit/tests/data', self.server_config.config_dir())
 
     def test_conf_get_values(self):
         self.assertEqual('localhost',self.server_config['server']['host'].get())

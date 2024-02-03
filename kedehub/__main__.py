@@ -6,7 +6,7 @@ from tqdm import tqdm
 from dateutil.parser import parse
 
 from kedehub import bcolors
-from kedehub.git.git_utility import get_repo_name, get_git_repository, get_repository_remote_origin_url
+from kedehub.gitclient.git_utility import get_repo_name, get_git_repository, get_repository_remote_origin_url
 from kedehub.gitcloner.git_cloner import GitCloner, clone_a_repo
 from kedehub.gitcloner.github_repos import GithubClient
 from kedehub.gitcloner.gogs_repos import GogsClient

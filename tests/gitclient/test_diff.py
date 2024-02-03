@@ -5,7 +5,7 @@ import unittest
 from unidiff import PatchSet
 
 from kedehub.config import Configuration
-from kedehub.git.git_utility import _make_diffed_commit_char_stats, get_git_repository, \
+from kedehub.gitclient.git_utility import _make_diffed_commit_char_stats, get_git_repository, \
     count_added_deleted_chars_simplest_levenstein
 
 

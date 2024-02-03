@@ -1,4 +1,4 @@
-from kedehub.git.git_utility import get_name, get_email
+from kedehub.gitclient.git_utility import get_name, get_email
 from kedehub_client import get_sync_apis
 
 def save_new_author(author_line):

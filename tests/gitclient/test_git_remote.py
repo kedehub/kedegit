@@ -1,7 +1,7 @@
 import os
 import unittest
 
-from kedehub.git.git_utility import get_git_repository, get_repository_remote_origin_url
+from kedehub.gitclient.git_utility import get_git_repository, get_repository_remote_origin_url
 
 
 class KedeGitRemoteRepoTestCase(unittest.TestCase):
