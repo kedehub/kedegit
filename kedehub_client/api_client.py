@@ -101,7 +101,7 @@ class ApiClient:
             print("Authorization failed. Please check your user or token.")
             sys.exit(1)
         else:
-            print(f"An unexpected error occurred: {e}")
+            print(f"An unexpected error occurred: {response.status_code} {response.text}")
 
     async def send_inner(self, request: Request) -> Response:
         try:
