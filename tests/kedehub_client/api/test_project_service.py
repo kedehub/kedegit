@@ -23,7 +23,7 @@ class KedeHubProjectServiceTest(KedeGitTest):
 
         new_project_repository = assign_new_repo_to_existing_project(project_repository.project_name, project_repository.repository_id)
 
-        self.assertIsNone(new_project_repository)
+        self.assertTrue(new_project_repository.repository_id == 0)
 
     def test_assign_existing_repo_to_existing_project(self):
         project = Project(project_name='test_2',
@@ -45,8 +45,7 @@ class KedeHubProjectServiceTest(KedeGitTest):
         new_project_repository = assign_new_repo_to_existing_project(project_repository.project_name,
                                             project_repository.repository_id)
 
-        self.assertIsNone(new_project_repository)
-
+        self.assertTrue(new_project_repository.repository_id == 0)
 
     def test_save_new_project(self):
         project = Project(project_name = 'test_2',
