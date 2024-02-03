@@ -122,8 +122,8 @@ class KedeGitCommitServiceTest(KedeGitTest):
                             commit_time_utc_offset=10800,
                             parent_ids=[], repository_id=repository_id)
 
-        save_new_commit(commit_dto)
-        self.assertEqual('', commit_dto.hexsha)
+        new_commit = save_new_commit(commit_dto)
+        self.assertIsNone(new_commit)
 
     def test_save_new_commit_non_existant_author(self):
         author_name = 'Dimitar_1 <dimitar>'
@@ -136,8 +136,8 @@ class KedeGitCommitServiceTest(KedeGitTest):
                             commit_time_utc_offset=10800,
                             parent_ids=[], repository_id=repository_id)
 
-        save_new_commit(commit_dto)
-        self.assertEqual('', commit_dto.hexsha)
+        new_commit = save_new_commit(commit_dto)
+        self.assertEqual('', new_commit.hexsha)
 
     def test_find_last_commit_for_repository(self):
         commit = find_last_commit_for_repository(1)
