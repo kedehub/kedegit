@@ -60,14 +60,26 @@ class ServerConfiguration:
 
         try:
             repos = self.config['repos'].get()
-            repos.append(odict)
+            # Check for duplicates
+            existion_repo = False
+            for repo in repos:
+                if repo['origin'] == origin and repo['repository_path'] == repository_path and repo[
+                    'configuration_file_path'] == configuration_file_path:
+                    print('Duplicate repository. Not adding to configuration.')
+                    existion_repo = True
+            if not existion_repo:
+                repos.append(odict)
         except(confuse.NotFoundError):
             self.config.add({'repos':[odict] })
 
         yaml = self.config.dump().strip()
 
-        with open(self.config.sources[0].filename, mode="w") as cfg_file:
-            cfg_file.write(yaml)
+        try:
+            with open(self.config.sources[0].filename, mode="w") as cfg_file:
+                cfg_file.write(yaml)
+        except IOError:
+            print('IOError: An error occurred while trying to write to the configuration file.')
+            raise IOError
 
         return yaml
 

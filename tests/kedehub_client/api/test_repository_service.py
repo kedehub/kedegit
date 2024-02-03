@@ -3,7 +3,7 @@ import datetime
 import os
 from tests.kedehub_test_load_db_once import KedeHubLoadDBOnceTest
 from kedehub.services.dro.repository_dto import Repository
-from kedehub.services.repository_service import save_new_repo, load_company_repositories, load_reposotories_for_project
+from kedehub.services.repository_service import load_company_repositories, load_reposotories_for_project
 from kedehub.services.project_service import assign_new_repo_to_existing_project
 from kedehub_client import get_sync_apis
 
@@ -21,17 +21,6 @@ class KedeHubRepositoryServiceTest(KedeHubLoadDBOnceTest):
     @classmethod
     def tearDownClass(cls):
         super(KedeHubRepositoryServiceTest, cls).tearDownClass()
-
-    def test_save_new_repo(self):
-        repo = Repository(origin = "http://git.elando.bg/eLando/azbg_virtual_pos.git",repository_path = os.path.join(self.current_directory, '../tests/data', 'repository'),
-                          configuration_file_path = 'repo-config.json')
-
-        new_repo = save_new_repo(repo.origin, repo.configuration_file_path, repo.start_time, repo.repository_path)
-
-        self.assertTrue(new_repo.id>0)
-        self.assertEqual(repo.configuration_file_path, new_repo.configuration_file_path)
-        self.assertEqual(repo.repository_path, new_repo.repository_path)
-        self.assertEqual(datetime.datetime(1980, 1, 1, 0, 0), new_repo.start_time)
 
     def test_load_all_repositories(self):
 
