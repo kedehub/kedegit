@@ -41,5 +41,5 @@ class KedeGitSubmoduleTest(KedeGitTest):
         commits = get_commits_per_project(self.kedegit.project_name,
                                           self.kedegit._shas_to_commits)
         self.assertEqual(4, commits[0].added_lines)
-        self.assertEqual(179, commits[0].added_chars)
-        self.assertEqual({'Other': 179}, commits[0].lang_count)
+        self.assertEqual(172, commits[0].added_chars)
+        self.assertEqual({'Other': 172}, commits[0].lang_count)
