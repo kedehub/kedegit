@@ -65,7 +65,7 @@ class ServerConfiguration:
             for repo in repos:
                 if repo['origin'] == origin and repo['repository_path'] == repository_path and repo[
                     'configuration_file_path'] == configuration_file_path:
-                    print('Duplicate repository. Not adding to configuration.')
+                    print('Duplicate repository. Not added to configuration.')
                     existion_repo = True
             if not existion_repo:
                 repos.append(odict)

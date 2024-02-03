@@ -22,7 +22,7 @@ RUN mkdir -p /root/.config/KedeGit && \
     chown -R root:root /root/.config/KedeGit
 
 # Set the entrypoint to Python with your module
-ENTRYPOINT ["python", "-m", "kedehub"]
+ENTRYPOINT ["python", "-u", "-m", "kedehub"]
 
 # Set default parameters which can be overridden
 CMD ["--help"]
