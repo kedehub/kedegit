@@ -116,7 +116,7 @@ That will be the KEDEMatcher located at https://github.com/kedehub/kedematcher.
 We will clone it in  tew local Git repository located at `~/git/kedematcher` 
 Then we can execute the below command:
 ```commandline
-python3 -m kedehub add-repository NEW_PROJECT ~/git/kedematcher
+python3 -m kedehub add-repository new_project ~/git/kedematcher
 ```
 The same with Docker:
 ```commandline
