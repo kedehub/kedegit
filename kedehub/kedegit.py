@@ -1,6 +1,7 @@
 import datetime
 import os
 import re
+import time
 from operator import itemgetter
 from tqdm import tqdm
 from . import server_config
@@ -97,7 +98,7 @@ class KedeGit:
         return commit_object
 
     def _process_repository(self, repository):
-        tqdm.write('Processing Repository: {}'.format(repository.origin))
+        print('Processing Repository: {}'.format(repository.origin))
         last_commit_for_repository = find_last_commit_for_repository(repository.id)
         count_processed_committs = 0
         for commit in self._iter_unprocessed_commits(repository, last_commit_for_repository):
@@ -108,6 +109,7 @@ class KedeGit:
             repository.head_commit_id = commit.hexsha
             save_new_commit(commit_object)
             count_processed_committs +=1
+        time.sleep(1)  # Adjust the pause duration as needed
         tqdm.write('Processed Repository: {}'.format(repository.origin))
         return count_processed_committs
 
