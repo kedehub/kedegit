@@ -97,7 +97,7 @@ class KedeGit:
         return commit_object
 
     def _process_repository(self, repository):
-        print('Processing Repository: {}'.format(repository.origin))
+        tqdm.write('Processing Repository: {}'.format(repository.origin))
         last_commit_for_repository = find_last_commit_for_repository(repository.id)
         count_processed_committs = 0
         for commit in self._iter_unprocessed_commits(repository, last_commit_for_repository):
@@ -108,7 +108,7 @@ class KedeGit:
             repository.head_commit_id = commit.hexsha
             save_new_commit(commit_object)
             count_processed_committs +=1
-        print('Processed Repository: {}'.format(repository.origin))
+        tqdm.write('Processed Repository: {}'.format(repository.origin))
         return count_processed_committs
 
     def _iter_branch(self, repository):
@@ -158,6 +158,8 @@ class KedeGit:
             self._repositories.append(dbrepo)
             assign_new_repo_to_existing_project(self.project_name, dbrepo.id)
             count_processed_committs = self._process_repository(dbrepo)
+        else:
+            tqdm.write('Repository already exists in the project. Skipping.')
         return count_processed_committs
 
     def update_data(self):
