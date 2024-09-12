@@ -21,7 +21,11 @@ cd git/kedegit
 
 source venv311/bin/activate
 
-pyinstaller --onefile  --name kedegit --distpath ./dist/mac_dist --exclude-module test --hidden-import='git' --hidden-import='gitdb' --hidden-import='mmap' --hidden-import='smmap' --hidden-import='multiprocessing' --paths ./venv311/lib/python3.11/site-packages/ --log-level=DEBUG kedehub/__main__.py
+pyinstaller --onefile  --name kedegit --distpath ./dist/mac_dist --exclude-module test --hidden-import='unidiff' --hidden-import='git' --hidden-import='gitdb' --hidden-import='mmap' --hidden-import='smmap' --hidden-import='multiprocessing' --paths ./venv311/lib/python3.11/site-packages/ ~/git/kedegit/kedehub/__main__.py
+
+pyinstaller --onefile  --name kedegit --distpath ./dist/mac_dist --exclude-module test --paths ./venv311/lib/python3.11/site-packages/ ~/git/kedegit/kedehub/__main__.py
+
+pyinstaller ~/git/kedegit/kedegit.spec
 
 ./dist/mac_dist/kedegit list-projects
 

@@ -1,3 +1,9 @@
+# based on https://github.com/pyinstaller/pyinstaller/issues/2322
+import multiprocessing as mp
+if __name__ == '__main__':
+    mp.freeze_support()
+    mp.set_start_method('spawn')
+
 import argparse
 import datetime
 import os
