@@ -4,9 +4,13 @@ cd git/kedegit
 
 source venv311/bin/activate
 
+pip install -r requirements.txt
+
 pip install pyinstaller
 
 pyinstaller --version
+
+## remove psycopg2 from requirements.text
 
 deactivate
 --
@@ -17,7 +21,7 @@ cd git/kedegit
 
 source venv311/bin/activate
 
-pyinstaller --onefile  --name kedegit --distpath ./dist/mac_dist --exclude-module test --paths ./venv311/lib/python3.11/site-packages/ kedehub/__main__.py
+pyinstaller --onefile  --name kedegit --distpath ./dist/mac_dist --exclude-module test --hidden-import='git' --hidden-import='gitdb' --hidden-import='mmap' --hidden-import='smmap' --hidden-import='multiprocessing' --paths ./venv311/lib/python3.11/site-packages/ --log-level=DEBUG kedehub/__main__.py
 
 ./dist/mac_dist/kedegit list-projects
 
@@ -36,5 +40,31 @@ pyinstaller --onefile  --name kedegit --distpath ./dist/aws_dist--exclude-module
 ./dist/aws_dist/kedegit list-projects
 
 deactivate
+
+---
+-- build for Windows folder--
+
+https://www.python.org/downloads/release/python-3118/
+
+cd .\git\kedegit\
+
+python -m venv venv311
+
+.\venv311\Scripts\Activate.ps1
+
+$Env:PYTHONPATH = "C:\Users\dimit\git\kedegit"
+
+pip install pyinstaller
+
+## remove psycopg2 from requirements.text
+
+pip install -r requirements.txt
+
+pyinstaller --onefile --name kedegit --distpath .\dist\win_dist --exclude-module test --paths .\venv311\lib\site-packages kedehub\__main__.py
+
+deactivate
+
+.\dist\win_dist\kedegit list-projects
+
 
 ---
