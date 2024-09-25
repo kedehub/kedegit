@@ -1,5 +1,6 @@
 import confuse
 import sys
+import yaml
 
 APP_NAME = 'KedeGit'
 
@@ -29,9 +30,14 @@ class ServerConfiguration:
                 }
             )
         }
-        # https://confuse.readthedocs.io/en/latest/usage.html
+
         self.config = confuse.Configuration(APP_NAME)
-        # print('Confing dir: '+ self.config.config_dir())
+
+        # Validate YAML file before loading
+        self.validate_yaml_file(self.get_file_name())
+
+        # Load the configuration using confuse
+        print('This is your Confing dir: '+ self.config.config_dir())
         self.config.get(self.template)
 
     def get_config_dir(self):
@@ -100,3 +106,37 @@ class ServerConfiguration:
         for repo_data_from_config in self.get_repos():
             if (repo_origin == repo_data_from_config['origin']):
                 return True
+
+    def validate_yaml_file(self, file_path):
+        required_keys = [
+            'server.protocol',
+            'server.host',
+            'server.port',
+            'company.name',
+            'company.user',
+            'company.token'
+        ]
+
+        try:
+            with open(file_path, 'r') as file:
+                config_data = yaml.safe_load(file)
+                print(f"YAML file '{file_path}' is valid.")
+
+                # Check for missing required keys
+                for key in required_keys:
+                    parts = key.split('.')
+                    temp_data = config_data
+                    for part in parts:
+                        if part not in temp_data:
+                            raise KeyError(f"Missing required key: '{key}'")
+                        temp_data = temp_data[part]
+
+        except yaml.YAMLError as exc:
+            print(f"YAML formatting error in '{file_path}': {exc}")
+            sys.exit(1)
+        except FileNotFoundError:
+            print(f"YAML file '{file_path}' not found!")
+            sys.exit(1)
+        except KeyError as exc:
+            print(f"YAML validation error: {exc}")
+            sys.exit(1)
