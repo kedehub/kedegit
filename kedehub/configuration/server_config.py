@@ -31,13 +31,17 @@ class ServerConfiguration:
             )
         }
 
-        self.config = confuse.Configuration(APP_NAME)
+        try:
+            self.config = confuse.Configuration(APP_NAME)
+            print('This is your Config dir: ' + self.config.config_dir())
+        except Exception as e:
+            print(f"Error initializing configuration: {e}")
+            sys.exit("Error initializing configuration: {e}")
 
         # Validate YAML file before loading
         self.validate_yaml_file(self.get_file_name())
 
         # Load the configuration using confuse
-        print('This is your Confing dir: '+ self.config.config_dir())
         self.config.get(self.template)
 
     def get_config_dir(self):
@@ -118,9 +122,28 @@ class ServerConfiguration:
         ]
 
         try:
+            # Check for BOM and non-ASCII characters
+            with open(file_path, 'rb') as file:
+                raw_data = file.read()
+                if raw_data.startswith(b'\xef\xbb\xbf'):
+                    raise ValueError(
+                        f"YAML file '{file_path}' contains a BOM (Byte Order Mark), which should be removed.")
+
+                # Ensure no non-ASCII characters (optional)
+                if not raw_data.isascii():
+                    raise ValueError(f"YAML file '{file_path}' contains non-ASCII characters.")
+
+            # Check for consistent line endings (LF or CRLF)
+            with open(file_path, 'r', newline='') as file:
+                content = file.read()
+                # Check for CRLF line endings and raise an exception if found
+                if '\r\n' in content:
+                    raise ValueError(
+                        f"YAML file '{file_path}' uses Windows-style CRLF line endings. Please use consistent LF line endings.")
+
+            # Check for YAML syntax and missing keys
             with open(file_path, 'r') as file:
                 config_data = yaml.safe_load(file)
-                print(f"YAML file '{file_path}' is valid.")
 
                 # Check for missing required keys
                 for key in required_keys:
@@ -135,8 +158,6 @@ class ServerConfiguration:
             print(f"YAML formatting error in '{file_path}': {exc}")
             sys.exit(1)
         except FileNotFoundError:
-            print(f"YAML file '{file_path}' not found!")
-            sys.exit(1)
+            sys.exit(f"YAML file '{file_path}' not found!")
         except KeyError as exc:
-            print(f"YAML validation error: {exc}")
-            sys.exit(1)
+            sys.exit(f"YAML validation error: {exc}")
