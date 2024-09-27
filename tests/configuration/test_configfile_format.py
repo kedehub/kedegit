@@ -29,18 +29,6 @@ class KEDEGitFormatTestCase(unittest.TestCase):
         self.assertIn("YAML file", str(context.exception))
         self.assertIn("contains a BOM (Byte Order Mark), which should be removed", str(context.exception))
 
-    def test_with_crlf(self):
-        db_file_name = 'test_with_crlf.yaml'
-        db_file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../data')) + '/' + db_file_name
-        temp_file_path = create_temporary_copy(db_file_path, 'config.yaml', working_directory)
-        os.environ['KEDEGITDIR'] = working_directory.name
-
-        with self.assertRaises(ValueError) as context:
-            server_config = ServerConfiguration()
-
-        self.assertIn("YAML file", str(context.exception))
-        self.assertIn("uses Windows-style CRLF line endings. Please use consistent LF line endings", str(context.exception))
-
     def test_missing_keys(self):
         db_file_name = 'test_missing_keys.yaml'
         db_file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../data')) + '/' + db_file_name

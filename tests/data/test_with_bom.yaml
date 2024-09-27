@@ -1,0 +1,13 @@
+﻿
+server:
+  protocol: https
+  host: example.org
+  port: 443
+company:
+  name: "Tech Corp"
+  user: "admin_user"
+  token: "securetoken"
+repos:
+  - origin: "origin_repo_1"
+    repository_path: "/path/to/repo_1"
+    configuration_file_path: "/path/to/config_1"

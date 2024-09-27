@@ -1,0 +1,13 @@
+
+server
+  protocol: https
+  host: example.invalid
+  port: 8000
+company:
+  name "Invalid YAML Corp"  # Missing colon after 'name'
+  user: invalid_user
+  token: "invalidtoken"
+repos:
+  - origin: "origin_repo_invalid"
+    repository_path "/path/to/repo_invalid"  # Missing colon after 'repository_path'
+    configuration_file_path: "/path/to/config_invalid"

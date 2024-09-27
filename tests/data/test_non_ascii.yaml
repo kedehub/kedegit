@@ -1,0 +1,18 @@
+
+server:
+  protocol: http
+  host: example.com
+  port: 8080
+company:
+  name: "ACME Corporation"
+  user: "john_doe"
+  token: "abc123"
+repos:
+  - origin: "origin_repo"
+    repository_path: "/path/to/repo"
+    configuration_file_path: "/path/to/config"
+# Non-ASCII character below (é)
+  - origin: "origin_repo_2"
+    repository_path: "/path/to/repo_2"
+    configuration_file_path: "/path/to/config_2"
+    name: "Répository_2"

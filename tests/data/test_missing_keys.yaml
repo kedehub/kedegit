@@ -1,0 +1,12 @@
+
+server:
+  host: example.io
+  port: 8081
+company:
+  name: "Missing Keys Inc."
+  user: "key_user"
+  token: "keytoken"
+repos:
+  - origin: "origin_repo_4"
+    repository_path: "/path/to/repo_4"
+    configuration_file_path: "/path/to/config_4"

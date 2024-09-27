@@ -133,14 +133,6 @@ class ServerConfiguration:
                 if not raw_data.isascii():
                     raise ValueError(f"YAML file '{file_path}' contains non-ASCII characters.")
 
-            # Check for consistent line endings (LF or CRLF)
-            with open(file_path, 'r', newline='') as file:
-                content = file.read()
-                # Check for CRLF line endings and raise an exception if found
-                if '\r\n' in content:
-                    raise ValueError(
-                        f"YAML file '{file_path}' uses Windows-style CRLF line endings. Please use consistent LF line endings.")
-
             # Check for YAML syntax and missing keys
             with open(file_path, 'r') as file:
                 config_data = yaml.safe_load(file)
