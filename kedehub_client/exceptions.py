@@ -44,3 +44,7 @@ class UnexpectedResponse(ApiException):
 class ResponseHandlingException(ApiException):
     def __init__(self, source: Exception):
         self.source = source
+        self.message = str(source)
+
+    def __str__(self):
+        return f"ResponseHandlingException: {self.message}"

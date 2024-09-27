@@ -2,6 +2,7 @@ from asyncio import get_event_loop
 from functools import lru_cache
 from typing import Any, Awaitable, Callable, Dict, Generic, Type, TypeVar, overload
 import sys
+import httpx
 from httpx import AsyncClient, Request, Response
 from pydantic import ValidationError
 
@@ -107,6 +108,9 @@ class ApiClient:
         try:
             # https://www.python-httpx.org/advanced/#setting-and-disabling-timeouts
             response = await self._async_client.send(request)
+        except httpx.ConnectError as e:
+            print(f"Connection error: {e}")
+            sys.exit(1)
         except Exception as e:
             raise ResponseHandlingException(e)
         return response
