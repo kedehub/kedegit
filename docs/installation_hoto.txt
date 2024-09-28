@@ -21,8 +21,6 @@ cd git/kedegit
 
 source venv311/bin/activate
 
-pyinstaller --onefile  --name kedegit --distpath ./dist/mac_dist --exclude-module test --hidden-import='unidiff' --hidden-import='git' --hidden-import='gitdb' --hidden-import='mmap' --hidden-import='smmap' --hidden-import='multiprocessing' --paths ./venv311/lib/python3.11/site-packages/ ~/git/kedegit/kedehub/__main__.py
-
 pyinstaller --onefile  --name kedegit --distpath ./dist/mac_dist --exclude-module test --paths ./venv311/lib/python3.11/site-packages/ ~/git/kedegit/kedehub/__main__.py
 
 pyinstaller ~/git/kedegit/kedegit.spec
@@ -58,7 +56,7 @@ python -m venv venv311
 
 $Env:PYTHONPATH = "C:\Users\dimit\git\kedegit"
 
-pip install pyinstaller
+pip install --upgrade pyinstaller
 
 ## remove psycopg2 from requirements.text
 
