@@ -1,3 +1,5 @@
+from io import StringIO
+
 import pandas as pd
 from kedehub_client import get_sync_apis
 from kedehub_client.exceptions import UnexpectedResponse
@@ -5,7 +7,7 @@ import time
 
 def find_outliers(person):
     json = get_sync_apis().outliers_api.get_outliers(person)
-    df = pd.read_json(json, orient='split')
+    df = pd.read_json(StringIO(json), orient='split')
     if not df.empty:
         df.set_index('commit_time', inplace=True)
         df.index = pd.to_datetime(df.index)

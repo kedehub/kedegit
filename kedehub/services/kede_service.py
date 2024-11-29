@@ -1,3 +1,5 @@
+from io import StringIO
+
 from kedehub_client import get_sync_apis
 from kedehub_client.exceptions import UnexpectedResponse
 import time
@@ -17,7 +19,7 @@ def calculate_weekly_kede_for_person(project, person):
 
 def find_wrongly_calculated_kede_stats_for_authors_repo_id(repository_id: int, kede_freq: str):
     json = get_sync_apis().kedestats_api.get_wrongly_calculated_kede_stats_for_authors_repo_id(repository_id, kede_freq)
-    df = pd.read_json(json, orient='split')
+    df = pd.read_json(StringIO(json), orient='split')
     if not df.empty:
         df.set_index('commit_date', inplace=True)
         df.index = pd.to_datetime(df.index)
