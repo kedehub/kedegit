@@ -398,7 +398,7 @@ def bulk_add_repos_from_dir(options):
             continue
 
         if project is None:
-            project_name = project_name = get_repo_name(remote_origin_url)
+            project_name = get_repo_name(remote_origin_url)
         else:
             project_name = project
 
