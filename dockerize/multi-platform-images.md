@@ -13,6 +13,12 @@ Create a multi-architecture manifest: Using Docker CLI's manifest command (or Do
 Push the manifest list to ECR under a common tag: This tag is what users will use to pull the image. The container runtime automatically resolves which architecture-specific image to pull based on the host's architecture.
 
 Here is a brief example using Docker commands:
+ Retrieve an authentication token and authenticate your Docker client to your registry.
+
+```
+aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/kedehub
+```
+
 
 Tag your image so you can push the image to this repository:
 
