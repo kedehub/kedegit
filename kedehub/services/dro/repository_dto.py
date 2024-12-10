@@ -5,6 +5,7 @@ from git import Repo
 from pydantic import BaseModel
 
 from kedehub.config import Configuration
+from kedehub.gitclient.git_utility import get_git_repository
 from kedehub.utility.time_utility import _time_offset_to_local_time
 
 
@@ -27,7 +28,7 @@ class Repository(BaseModel):
 
     def _init_properties(self):
         self.configuration = Configuration(self.configuration_file_path)
-        self.git_repository = Repo(self.repository_path)
+        self.git_repository = get_git_repository(self.repository_path)
 
     def start_time_tz(self):
         if self.start_time:
