@@ -23,7 +23,7 @@ def load_reposotories_for_project(project_name):
         merge_repo_from_db_and_config(server_config.get_repos(), repo)
         if repo.repository_path is None:
             repositories.remove(repo)
-            print(f"Repository {repo.origin} is not in local cconfiguratio file.")
+            print(f"Repository {repo.origin} is not in local cconfiguration file.")
         else:
             repo._init_properties()
     return repositories
