@@ -19,14 +19,15 @@ def save_new_repo(origin, configuration_file_path, earliest_date, repository_pat
 
 def load_reposotories_for_project(project_name):
     repositories = get_sync_apis().repository_api.get_project_reposotories(project_name)
+    filtered_repositories = []
     for repo in repositories:
         merge_repo_from_db_and_config(server_config.get_repos(), repo)
         if repo.repository_path is None:
-            repositories.remove(repo)
-            print(f"Repository {repo.origin} is not in local cconfiguration file.")
+            print(f"Repository {repo.origin} is not in local configuration file.")
         else:
             repo._init_properties()
-    return repositories
+            filtered_repositories.append(repo)
+    return filtered_repositories
 
 def find_reposotories_for_project(project_name):
     return get_sync_apis().repository_api.get_project_reposotories(project_name)
