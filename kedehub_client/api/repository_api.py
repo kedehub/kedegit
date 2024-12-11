@@ -36,6 +36,6 @@ class SyncRepositoryApi(_RepositoryApi):
         coroutine = self._build_get_company_repositories(server_config.get_company_name())
         return get_event_loop().run_until_complete(coroutine)
 
-    def load_reposotories_for_project(self, project_name):
+    def get_project_reposotories(self, project_name):
         coroutine = self._build_get_all_repositoriesy_for_project(server_config.get_company_name(), project_name)
         return get_event_loop().run_until_complete(coroutine)

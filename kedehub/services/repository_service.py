@@ -18,7 +18,7 @@ def save_new_repo(origin, configuration_file_path, earliest_date, repository_pat
 
 
 def load_reposotories_for_project(project_name):
-    repositories = get_sync_apis().repository_api.load_reposotories_for_project(project_name)
+    repositories = get_sync_apis().repository_api.get_project_reposotories(project_name)
     for repo in repositories:
         merge_repo_from_db_and_config(server_config.get_repos(), repo)
         if repo.repository_path is None:
@@ -29,7 +29,7 @@ def load_reposotories_for_project(project_name):
     return repositories
 
 def find_reposotories_for_project(project_name):
-    return get_sync_apis().repository_api.load_reposotories_for_project(project_name)
+    return get_sync_apis().repository_api.get_project_reposotories(project_name)
 
 
 def load_company_repositories():
