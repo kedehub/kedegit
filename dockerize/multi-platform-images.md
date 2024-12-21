@@ -13,6 +13,21 @@ Create a multi-architecture manifest: Using Docker CLI's manifest command (or Do
 Push the manifest list to ECR under a common tag: This tag is what users will use to pull the image. The container runtime automatically resolves which architecture-specific image to pull based on the host's architecture.
 
 Here is a brief example using Docker commands:
+
+## Delete images in ECR and locally
+
+Delete the manifest list:
+```
+docker manifest rm public.ecr.aws/kedehub/kedegit-image:latest
+```
+
+Confirm Deletion:
+```commandline
+docker manifest inspect public.ecr.aws/kedehub/kedegit-image:latest
+```
+If the above command still shows the manifest, it indicates it's still being cached or stored locally.
+
+
  Retrieve an authentication token and authenticate your Docker client to your registry.
 
 ```
@@ -45,7 +60,12 @@ Then, create and push a manifest list that references both images under a shared
 ```
 docker manifest create public.ecr.aws/kedehub/kedegit-image:latest public.ecr.aws/kedehub/kedegit-image:arm64-latest public.ecr.aws/kedehub/kedegit-image:amd64-latest
 ```
+Inspect the manifest list again to see if the referenced digests now match those in the AWS ECR Public repository:
 
+```commandline
+docker manifest inspect public.ecr.aws/kedehub/kedegit-image:latest
+
+```
 ```
 docker manifest push public.ecr.aws/kedehub/kedegit-image:latest
 ```
