@@ -48,6 +48,10 @@ deactivate
 
 https://www.python.org/downloads/release/python-3118/
 
+https://visualstudio.microsoft.com/visual-cpp-build-tools/
+
+https://wiki.python.org/moin/WindowsCompilers
+
 cd .\git\kedegit\
 
 python -m venv venv311
