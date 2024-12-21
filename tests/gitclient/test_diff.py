@@ -146,6 +146,19 @@ class TestDiff(unittest.TestCase):
         self.assertEqual(13396, patch_chars_aded)
         self.assertEqual(0,patch_chars_deleted)
 
+    def test_large_diff(self):
+        # Load the large diff file
+        # https://github.com/garious/loom/commit/ec06db409de3368db6379d9781fc0634ff1f3038.diff
+        utf8_file = os.path.join(self.current_directory, 'samples/large_diff_test_case.diff')
+        with open(utf8_file, "r") as diff_file:
+            patch_set = PatchSet(diff_file)
+
+        patch_chars_aded, patch_chars_deleted = count_added_deleted_chars_simplest_levenstein(patch_set[3])
+
+        self.assertEqual(0, patch_chars_aded)
+        self.assertEqual(0, patch_chars_deleted)
+
+
 
 if __name__ == '__main__':
     unittest.main()

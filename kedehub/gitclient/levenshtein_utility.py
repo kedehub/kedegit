@@ -8,6 +8,8 @@ from unidiff.patch import (
 )
 from Levenshtein import editops
 
+from kedehub.gitclient import MAX_LINES_THRESHOLD
+
 MAX_LINE_LENGTH = 1000
 
 LINE_DELETED_KEY = 'deleted'
@@ -58,7 +60,12 @@ def cleanup_line(line):
     '''
     return line.value.rstrip('\n').rstrip(' ')
 
-def find_added_deleted_chars_in_hunk(hunk:Hunk):
+def find_added_deleted_chars_in_hunk(hunk: Hunk, file_name: str):
+    # For very large files we log and skip the hunk processing
+    if len(hunk) > MAX_LINES_THRESHOLD:
+        print(f"Skipping hunk in file '{file_name}' with {len(hunk)} lines")
+        return Counter()
+
     hunk_counter = Counter()
     block_removed_lines = ''
     bloack_added_lines = ''

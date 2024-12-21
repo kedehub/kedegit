@@ -6,12 +6,11 @@ import errno
 from git import Repo, Commit
 from unidiff import PatchSet
 
+from kedehub.gitclient import MAX_NUMBER_OF_FILES_IN_DIFF
 # https://stackoverflow.com/questions/9765453/is-gits-semi-secret-empty-tree-object-reliable-and-why-is-there-not-a-symbolic/9766506#9766506
 from kedehub.gitclient.levenshtein_utility import find_added_deleted_chars_in_hunk, LINE_DELETED_KEY, LINE_ADDED_KEY
 from kedehub.language.detect_language import detect_language
 from kedehub.utility.time_utility import _time_offset_to_local_time
-
-MAX_NUMBER_OF_FILES_IN_DIFF = 199
 
 EMPTY_TREE_SHA = '4b825dc642cb6eb9a060e54bf8d69288fbee4904'
 _name_regex = re.compile('^(.*)\\s+(<.*>)$')
@@ -76,7 +75,7 @@ def _make_diffed_commit_char_stats(commit, previous_commit, configuration):
     processed_files_counter=0
     for diff in diff_index_text:
         # Filter out a small number of commits that were modifying
-        # more than 1000 files each. These large commits primarily fall into two classes:
+        # more than MAX_NUMBER_OF_FILES_IN_DIFF files each. These large commits primarily fall into two classes:
         # The majority re merge commits.
         # The rest are mostly the result of search and replace operations across a large
         # number of files—e.g. replacing http through https4
@@ -122,8 +121,9 @@ def _make_diffed_commit_char_stats(commit, previous_commit, configuration):
 
 def count_added_deleted_chars_simplest_levenstein(patch):
     counter = Counter()
+    file_name = patch.target_file
     for hunk in patch:
-        counter.update(find_added_deleted_chars_in_hunk(hunk))
+        counter.update(find_added_deleted_chars_in_hunk(hunk, file_name))
 
     return counter[LINE_ADDED_KEY], counter[LINE_DELETED_KEY]
 

@@ -43,7 +43,7 @@ class LevenshteinTestCase(unittest.TestCase):
         hunk.append(removed_line)
         hunk.append(added_line)
 
-        counter = find_added_deleted_chars_in_hunk(hunk)
+        counter = find_added_deleted_chars_in_hunk(hunk, 'file_name')
         self.assertEqual(0, counter[LINE_DELETED_KEY])
         self.assertEqual(0, counter[LINE_ADDED_KEY])
 
@@ -55,7 +55,7 @@ class LevenshteinTestCase(unittest.TestCase):
         hunk.append(removed_line)
         hunk.append(added_line)
 
-        counter = find_added_deleted_chars_in_hunk(hunk)
+        counter = find_added_deleted_chars_in_hunk(hunk, 'file_name')
         self.assertEqual(1, counter[LINE_DELETED_KEY])
         self.assertEqual(1, counter[LINE_ADDED_KEY])
 
@@ -67,7 +67,7 @@ class LevenshteinTestCase(unittest.TestCase):
         hunk.append(removed_line)
         hunk.append(added_line)
 
-        counter = find_added_deleted_chars_in_hunk(hunk)
+        counter = find_added_deleted_chars_in_hunk(hunk, 'file_name')
         self.assertEqual(9, counter[LINE_DELETED_KEY])
         self.assertEqual(9, counter[LINE_ADDED_KEY])
 
@@ -93,7 +93,7 @@ class LevenshteinTestCase(unittest.TestCase):
         hunk.append(added_line_1)
         hunk.append(added_line_2)
 
-        counter = find_added_deleted_chars_in_hunk(hunk)
+        counter = find_added_deleted_chars_in_hunk(hunk, 'file_name')
         self.assertEqual(0, counter[LINE_DELETED_KEY])
         self.assertEqual(18, counter[LINE_ADDED_KEY])
 
@@ -125,7 +125,7 @@ class LevenshteinTestCase(unittest.TestCase):
         hunk.append(removed_line_2)
         hunk.append(added_line_1)
 
-        counter = find_added_deleted_chars_in_hunk(hunk)
+        counter = find_added_deleted_chars_in_hunk(hunk, 'file_name')
         self.assertEqual(49, counter[LINE_DELETED_KEY])
         self.assertEqual(0, counter[LINE_ADDED_KEY])
 
@@ -151,7 +151,7 @@ class LevenshteinTestCase(unittest.TestCase):
         hunk.append(removed_line_1)
         hunk.append(added_line_1)
 
-        counter = find_added_deleted_chars_in_hunk(hunk)
+        counter = find_added_deleted_chars_in_hunk(hunk, 'file_name')
         self.assertEqual(4, counter[LINE_DELETED_KEY])
         self.assertEqual(1, counter[LINE_ADDED_KEY])
 
@@ -190,7 +190,7 @@ class LevenshteinTestCase(unittest.TestCase):
         hunk.append(added_line_2)
         hunk.append(added_line_3)
 
-        counter = find_added_deleted_chars_in_hunk(hunk)
+        counter = find_added_deleted_chars_in_hunk(hunk, 'file_name')
         self.assertEqual(14, counter[LINE_DELETED_KEY])
         self.assertEqual(38, counter[LINE_ADDED_KEY])
 
@@ -215,7 +215,7 @@ class LevenshteinTestCase(unittest.TestCase):
         hunk = Hunk(src_len=None, tgt_len=None)
         hunk.append(added_line_1)
 
-        counter = find_added_deleted_chars_in_hunk(hunk)
+        counter = find_added_deleted_chars_in_hunk(hunk, 'file_name')
         self.assertEqual(0, counter[LINE_DELETED_KEY])
         self.assertEqual(18, counter[LINE_ADDED_KEY])
 
@@ -230,7 +230,7 @@ class LevenshteinTestCase(unittest.TestCase):
         hunk.append(added_line)
         hunk.append(context_line)
 
-        counter = find_added_deleted_chars_in_hunk(hunk)
+        counter = find_added_deleted_chars_in_hunk(hunk, 'file_name')
         self.assertEqual(1, counter[LINE_DELETED_KEY])
         self.assertEqual(1, counter[LINE_ADDED_KEY])
 
@@ -245,7 +245,7 @@ class LevenshteinTestCase(unittest.TestCase):
         hunk.append(added_line)
         hunk.append(context_line)
 
-        counter = find_added_deleted_chars_in_hunk(hunk)
+        counter = find_added_deleted_chars_in_hunk(hunk, 'file_name')
         self.assertEqual(9, counter[LINE_DELETED_KEY])
         self.assertEqual(9, counter[LINE_ADDED_KEY])
 
@@ -280,7 +280,7 @@ class LevenshteinTestCase(unittest.TestCase):
         hunk.append(context_line_6)
         hunk.append(context_line_7)
 
-        counter = find_added_deleted_chars_in_hunk(hunk)
+        counter = find_added_deleted_chars_in_hunk(hunk, 'file_name')
         self.assertEqual(45, counter[LINE_DELETED_KEY])
         self.assertEqual(45, counter[LINE_ADDED_KEY])
 
