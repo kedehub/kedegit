@@ -7,6 +7,7 @@
     "**/**/DockerfileWithBuilder",
     "**/**/DockerfileWithoutBuilder",
     "**/**/Dockerfile",
+    "**/**/Keys.txt",
     "**/**/*.js",
     "**/**/*.ts",
     "**/**/*.json",
@@ -153,14 +154,12 @@
     "**/**/*.thy",
     "**/**/*.toml",
     "**/**/*.po",
-    "**/**/*.tex",
-    "**/**/*.txt",
-    "**/**/*.ros",
-    "**/**/*.tpl"
+    "**/**/*.tex"
   ],
   "excludedSourceFiles": [
     "**/image_build/**",
     "**/**/*.map",
+    "**/**/output.json",
     "**/**/*.js.map",
     "**/**/*.ts.map",
     "**/**/*.css.map",
@@ -171,22 +170,6 @@
     "**/**/*.jpg",
     "**/**/*.jpeg",
     "**/**/*.tiff",
-    "**/**/*.bmp",
-    "**/**/package-lock.json",
-    "**/**/asset-manifest.json",
-    "**/**/precache-manifest.*.js",
-    "**/**/*.chunk.js",
-    "**/**/*.chunk.css",
-    "**/**/service-worker.js",
-    "**/**/LICENSE.txt",
-    "**/**/*.LICENSE.txt",
-    "**/**/ERC20.json",
-    "**/**/Wormhole.json",
-    "**/**/WrappedAsset.json",
-    "**/**/*.d.ts",
-    "**/**/Erc20Factory.ts",
-    "**/**/WormholeFactory.ts",
-    "**/**/WrappedAssetFactory.ts",
-    "**/**/npm-shrinkwrap.json"
+    "**/**/*.bmp"
   ]
 }

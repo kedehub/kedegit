@@ -173,6 +173,7 @@
     "**/**/*.bmp",
     "**/**/package-lock.json",
     "**/**/asset-manifest.json",
+    "**/**/output.json",
     "**/**/precache-manifest.*.js",
     "**/**/*.chunk.js",
     "**/**/*.chunk.css",

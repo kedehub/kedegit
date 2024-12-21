@@ -48,6 +48,8 @@ class KedeGitConfigurationTest(unittest.TestCase):
         self.assertEqual(False, self.configuration.is_source_file('packages/bridge/src/contracts/WrappedAssetFactory.ts'))
         self.assertEqual(False,
                          self.configuration.is_source_file('virtualpos_frontend/src/assets/fonts/npm-shrinkwrap.json'))
+        self.assertEqual(False,
+                         self.configuration.is_source_file('GangwayForecast.Worker/output.json'))
 
     def test_excluded_file_extentions(self):
         # test excluded file extentions

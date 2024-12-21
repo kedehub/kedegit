@@ -89,6 +89,9 @@ class SourceMatcherTest(unittest.TestCase):
     def test_doublestar_matches_in_the_beginning_and_star_for_file_names(self):
         self.assertTrue(match('**/*.txt', os.path.join('dir', 'dir1', 'file.txt')))
 
+    def test_twice_doublestar_matches_in_the_beginning_and_no_star_for_file_names(self):
+        self.assertTrue(match('**/**/file.txt', os.path.join('dir', 'dir1','dir2','dir3','dir4', 'file.txt')))
+
     def test_twice_doublestar_matches_in_the_beginning_and_star_for_file_names(self):
         self.assertTrue(match('**/**/*.txt', os.path.join('dir', 'dir1','dir2','dir3', 'file.txt')))
 
