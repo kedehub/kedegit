@@ -48,6 +48,9 @@ class SourceMatcherTest(unittest.TestCase):
     def test_doublestar_matches_multiple_directories(self):
         self.assertTrue(match('dir/**/file.txt', os.path.join('dir', 'dir1', 'dir2', 'file.txt')))
 
+    def test_doublestar_matches_multiple_directories_with_backslashes(self):
+        self.assertTrue(match('**/**/file.txt', r"dir\dir1\dir2\file.txt"))
+
     def test_doublestar_matches_zero_directories(self):
         self.assertTrue(match('dir/**/file.txt', os.path.join('dir', 'file.txt')))
 

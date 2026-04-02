@@ -50,9 +50,10 @@ def match(pattern, file_name):
             pattern) is not None or _double_star_middle_before_invalid_regex.search(pattern) is not None:
         raise ValueError('** in {} not alone between path separators'.format(pattern))
     pattern = pattern.rstrip('/')
-    file_name = file_name.rstrip('/')
+    file_name = file_name.rstrip('/\\')
     while '**/**' in pattern:
         pattern = pattern.replace('**/**', '**')
     pattern_components = pattern.split('/')
-    file_name_components = file_name.split(os.sep)
+    # Git paths often use '/' even on Windows. Split on both separators.
+    file_name_components = re.split(r'[\\/]+', file_name)
     return _match_components(pattern_components, file_name_components)
