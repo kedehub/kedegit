@@ -46,6 +46,8 @@ More information can be found [here](https://docs.kedehub.io/kedehub/kedehub-ked
 
 All you need to know is in the [How to use KEDEGit](./docs/howto.md) document.
 
+Contributors working from source should start with the [Developer Guide](./docs/developer_guide/README.md).
+
 ## Get involved
 
 Contributions are welcome! Go ahead and file Issues or open Pull Requests.
