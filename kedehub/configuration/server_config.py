@@ -101,7 +101,16 @@ class ServerConfiguration:
             sys.exit(1)
 
     def get_server_url(self):
-        return self.config['server']['protocol'].get() +'://' + self.config['server']['host'].get() + ':' + str(self.config['server']['port'].get())
+        protocol = self.config['server']['protocol'].get()
+        host = self.config['server']['host'].get()
+        port = self.config['server']['port'].get()
+
+        # The host value may include a path (e.g. 'localhost/api'). The port
+        # must be placed right after the hostname and before any such path,
+        # otherwise the resulting URL is invalid (e.g. 'localhost/api:80').
+        hostname, sep, path = host.partition('/')
+
+        return protocol + '://' + hostname + ':' + str(port) + sep + path
 
     def set_file(self, file_name: str):
         self.config.set_file(file_name)
