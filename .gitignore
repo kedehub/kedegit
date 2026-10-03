@@ -1,2 +1,9 @@
 /venv311/
 /.idea/
+**/**/__pycache__/
+/dist/
+/build/
+/tests/data/azbg_virtual_pos/
+.gitignore
+/.github/
+COS_operator_guide.md

@@ -1,10 +1,9 @@
 import os
-import time
 import unittest
 from kedehub.kedegit import KedeGit
 from kedehub.services.commit_service import get_commits_per_project
 from tests import working_directory
-import subprocess
+from tests.backend_stack import BackendStack
 
 class KedeGitTest(unittest.TestCase):
 
@@ -26,13 +25,6 @@ class KedeGitTest(unittest.TestCase):
         print(self.id())
         self.current_directory = os.path.abspath(os.path.dirname(__file__))
         self.working_directory = working_directory
-        self.proc = subprocess.Popen(['/Users/dimitarbakardzhiev/git/kedehub_server/venv311/bin/python3', '-m' ,'tests'],
-                                     cwd = '/Users/dimitarbakardzhiev/git/kedehub_server/',
-                                     stdin=subprocess.PIPE)
-        time.sleep(6.5)
+        self.backend_stack = BackendStack(working_directory.name)
+        self.addCleanup(self.backend_stack.close)
         self.kedegit = self._make_kedegit('test')
-
-    def tearDown(self):
-        self.proc.communicate(input=b"stop", timeout=5)
-        self.proc.terminate()
-        time.sleep(6.5)

@@ -1,10 +1,9 @@
 import os
 import unittest
-import time
 from kedehub.kedegit import KedeGit
 from kedehub.services.commit_service import get_commits_per_project
 from tests import working_directory
-import subprocess
+from tests.backend_stack import BackendStack
 
 
 class KedeHubLoadDBOnceTest(unittest.TestCase):
@@ -23,14 +22,6 @@ class KedeHubLoadDBOnceTest(unittest.TestCase):
     def setUpClass(cls):
         cls.current_directory = os.path.abspath(os.path.dirname(__file__))
         cls.working_directory = working_directory
-        cls.proc = subprocess.Popen(['/Users/dimitarbakardzhiev/git/kedehub_server//venv311/bin/python', '-m' ,'tests'],
-                                     cwd = '/Users/dimitarbakardzhiev/git/kedehub_server/',
-                                     stdin=subprocess.PIPE)
-        time.sleep(6.5)
+        cls.backend_stack = BackendStack(working_directory.name)
+        cls.addClassCleanup(cls.backend_stack.close)
         cls.kedegit = KedeGit('test')
-
-    @classmethod
-    def tearDownClass(cls):
-        cls.proc.communicate(input=b"stop", timeout=5)
-        cls.proc.terminate()
-        time.sleep(6.5)

@@ -1,8 +1,15 @@
 # based on https://github.com/pyinstaller/pyinstaller/issues/2322
 import multiprocessing as mp
-if __name__ == '__main__':
+
+
+def _configure_multiprocessing():
     mp.freeze_support()
-    mp.set_start_method('spawn')
+    if mp.get_start_method(allow_none=True) is None:
+        mp.set_start_method('spawn')
+
+
+if __name__ == '__main__':
+    _configure_multiprocessing()
 
 import argparse
 import datetime
