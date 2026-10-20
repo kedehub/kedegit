@@ -5,6 +5,8 @@ Navigate to the directory containing kedegit project and run the following comma
 docker build --no-cache -t kedegit-image:latest -f kedegit/dockerize/Dockerfile .
 ```
 
+The build context is the parent folder, so `dockerize/Dockerfile.dockerignore` (picked up automatically by BuildKit) limits it to `requirements.txt`, `kedehub/` and `kedehub_client/`.
+
 ```commandline
 docker image inspect kedegit-image --format '{{.Architecture}}'
 ```

@@ -1,0 +1,8 @@
+# Build context is the parent of the repo (see kedegit-docker-how-to.md).
+# Allowlist: only what the image needs
+*
+!kedegit/requirements.txt
+!kedegit/kedehub/
+!kedegit/kedehub_client/
+**/__pycache__
+**/*.pyc
